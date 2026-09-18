@@ -6,14 +6,19 @@
 
 Каталог товаров веноу (vendor reset inventory) для **The Division 1**: оружие, моды оружия, броня (gear), моды брони (gear-mods / purple-mods). Приложение загружает JSON-дамп с внешнего сайта, отрисовывает карточки с иконками/статами/ценами и позволяет фильтровать по regexp. Целевая аудитория — игроки, планирующие сброс веноу на мобильных/десктопных браузерах.
 
-Данные лежат в **`data/*.json`** (4 файла: `weapons.json`, `weapon-mods.json`, `gear.json`, `gear-mods.json`). Первоисточник `rubenalamina.mx/division/*.json` через `cors.io` **недоступен**, `url` в `js/index.js` переключён на `'data/'` (старое значение оставлено комментарием). Схемы см. раздел 3.
+**Источник данных — Google Sheet** "[PUBLIC] The Last Wave Division 1 Vendor Reset" (published-to-web endpoint). Сервис **`service.py`** (Python, stdlib-only, `.venv/bin/python`) раз в неделю скачивает листы, парсит таблицы и пишет **`data/<slug>.json`** в item-модель страницы (`weapons`, `weapon-mods`, `gear`, `gear-mods`, плюс `welcome` и `meta.json`), а честный dump листов — в `data/raw/<slug>.json`. Лист `Blueprints` не синкронизируется — не используется. Схемы: item-модель страницы — раздел 3, sheet-native dump — раздел 3.1. Первый источник (`rubenalamina.mx` через `cors.io`, затем 52 демо-item'а в `data/`) мёртв/заменён; `url` в `js/index.js` = `'data/'`.
 
-**Запуск для демо:** fetch работает только по http(s), а ассеты в CSS идут с абсолютным префиксом `/divn/` — сервер должен отдавать проект как `/divn/`. Минимальный вариант (node, без зависимостей):
+> **Адаптер с дефолтами уже есть** (`ADAPTERS` в `service.py`): сервис пишет `data/<slug>.json` в **item-модель страницы** (раздел 3) — страница с ними рендерится. Для полей, которых нет в таблице, выставляются дефолты: `price="$0"`, `bonus="-"`, `fire/stam/elec="-"` (=205 на карточке), пустые `dmg/rpm/mag`, `rarity=""`. А вот `recommended` — **не дефолт, а реальные данные** листа (оранжевая подсветка `#ffbb7f`). Ограничение: иконки слотов оружия/брони на странице резолвятся **regex'ом по `name`/`bonus`** (см. 4.5/4.6), а имена из листа ("Enduring", "D3-FNC") под эти regexp не подходят — карточки рисуются, но иконка-слот может остаться дефолтной. Настоящий класс/слот лежит в `_section` (в `data/raw/`).
 
+**Запуск (один процесс — и данные, и страница):**
 ```
-node /tmp/d1server.js   # маппинг /divn/* → корень проекта, порт 8791
-# открыть http://127.0.0.1:8791/divn/index.html
+.venv/bin/python service.py            # sync + HTTP-сервер :8090, повторный sync каждые 7 дней
+.venv/bin/python service.py --sync-only# только sync (без сервера)
+# страница:  http://127.0.0.1:8090/divn/index.html     (или /divn/ -> index.html)
+# JSON API:  /  /status  /data/<slug>.json  /data/raw/<slug>.json  POST /sync
 ```
+Статика отдаётся **под префиксом `/divn/`**, потому что ассеты в CSS прописаны абсолютно (`/divn/css/...`, `/divn/fonts/...` — HARD RULE §4.7); префикс менять нельзя. Страница грузит данные относительным `fetch('data/...')` → попадает в `/divn/data/*.json` (те же файлы, что и JSON API).
+`demo-server.js` — прежний отдельный статик-сервер (`:8791`), **больше не нужен**: его роль выполняет `service.py`. Файл оставлен как запасной вариант.
 
 ## 2. Технологический стек
 
@@ -22,7 +27,7 @@ node /tmp/d1server.js   # маппинг /divn/* → корень проекта
 - **Axios** (`js/axios.min.js`) — подключён, но **НЕ используется**; для данных используется нативный `fetch`.
 - **Lodash** (`js/lodash.min.js`) — используется фактически только как глобальная зависимость; вызовы `_.debounce(...)` в `js/index.js` **битые** (результат не привязан к обработчикам — мёртвый код).
 - **CSS** — vanilla, без препроцессора. Шрифт **Borda** (ttf в `fonts/Borda/`).
-- **Данные** — JSON с внешнего endpoint (см. выше). Схемы см. раздел 3.
+- **Данные** — JSON из `data/`, генерируются `service.py` из published Google Sheet (см. раздел 1). Схемы — раздел 3 и 3.1.
 - **Иконки** — PNG-спрайты + `background-position` (CSS-атласы в `css/gear.css`, `css/talents.css`, `css/style.css`).
 
 ## 3. Структура проекта
@@ -36,7 +41,10 @@ js/gear.vue         # Компонент Gear
 js/gear-mod.vue     # Компонент GearMod
 js/vendor-item.vue  # Vue.component('vendor-item', ...) — обёртка: маппит item.type → внутренний компонент
 js/vue.js, axios.min.js, lodash.min.js  # vendor'нутые библиотеки
-data/*.json         # демо-данные: weapons / weapon-mods / gear / gear-mods (схемы ниже)
+service.py          # Python-сервис (stdlib-only): sync Google Sheet → data/*.json (+ raw/), HTTP: JSON API + статика страницы под /divn/, порт 8090
+demo-server.js      # ПРЕЖНИЙ статик-сервер (/divn/* → корень проекта, :8791) — заменён service.py, оставлен как запасной
+.venv/              # Python 3.12.2, ТОЛЬКО pip (без requests/bs4) — сервис работает на stdlib
+data/*.json         # ГЕНЕРИРУЕМЫЕ service.py (weapons / weapon-mods / gear / gear-mods / welcome / meta.json) — руками не править
 css/style.css       # База: grid-контейнер, карточки .item, currency, responsive
 css/gear.css        # Спрайт-иконки gear по слоту (chest/mask/...) + редкости
 css/talents.css     # Спрайт-иконки talents (talent.<name>)
@@ -45,6 +53,7 @@ css/talentslist      # текстовый файл: список имён talent
 fonts/Borda/        # ttf-шрифты Borda всех весов
 images/             # Спрайты: talents.png, weapons.png, stats.png, sets.png; images/items/*.png — иконки слотов gear
 .codegraph/         # Индекс codegraph (не часть приложения, .gitignore внутри)
+.work/              # служебное: снапшоты листов Google (sheet_*.html, d1pub.html), smoke_page.js (прогон логики страницы по data/*.json)
 ```
 
 **Item-модель** (поля зависят от `type`; все значения должны быть строками, где указано):
@@ -54,9 +63,38 @@ images/             # Спрайты: talents.png, weapons.png, stats.png, sets.
 - `gear`: `rarity` (css-класс, напр. `header-gs` = GS), `armor`, `fire`, `stam`, `elec` (`"-"` → рендерится как 205), `minor`, `major` (строки `<br/>`).
 - `gear-mod` / `purple-mod`: `stat` — `"-"` (без %/букв) = performance-мод, `"30%"` и т.п. = мод со стафом (рендерит `[stat, attribute]`), `attribute` — текст стафа.
 
-В `data/` лежат 52 демо-item'а, уже прогоненные по логике страницы (regex-типы, парсинг цен, slots/sets) — использовать как эталон при добавлении данных.
+**(исторически)** в `data/` лежали 52 демо-item'а; сейчас `data/<slug>.json` генерирует `service.py` **по этой item-модели** (через `ADAPTERS`), а чистый dump листа — в `data/raw/<slug>.json` (схема — ниже, 3.1).
 
 **Критически:** `item.type` — это **имя Vue-компонента**. `vendor-item.vue` маппит: `weapon`, `exotic` → `Weapon`; `weapon-mod` → `WeaponMod`; `gear` → `Gear`; `gear-mod`, `purple-mod` → `GearMod`. Динамический рендер: `<component :is='item.type'>` в шаблоне `#vendor-item`.
+
+### 3.1 Исходные листы Google Sheet (схема честного dump'а в `data/raw/*.json`)
+
+**Структура листов — блочная** (важно для парсера): лист состоит из повторяющихся блоков
+`заголовок категории (чёрный фон)` → `подкатегория` → **своя шапка таблицы** → строки данных → пустая строка → следующий. Пустая строка — разделитель блоков; шапка у **каждого блока своя**, и число колонок в ней разное. Фактически:
+- `weapons`: `Exotic` → шапка `Name|Talent 1|Talent 2|Talent 3|Location|Vendor` (10 строк); `High End` → 6 подкатегорий (Pistol, SMG, Assault Rifle, Shotgun, Marksman Rifle, LMG), у **Pistol талантов только 2** (шапка `Name|Talent 1|Talent 2||Location|Vendor`), у остальных 3.
+- `gear`: `Gear Set` и `High End` → 6 слотов каждый; шапка слота своя: Chest/Gloves `Attribute 1..3`, Mask/Backpack `Attribute 1..2`, Knee Pads `Attribute 1..4`, Holster только `Attribute 1`.
+- `weapon-mods`: `Magazine|Muzzle|Underbarrel|Sight` (одноуровневые — подкатегории нет, `_top` = `_section`); шапка `Name | (значение) | Attribute 1 | (значение) | Attribute 2 | …`, **значение стоит СЛЕВА от своего атрибута**; у Muzzle до `Attribute 4`.
+- `gear-mods`: `High End|Superior`, шапка одна; колонки `name` нет (первая пустая).
+
+Поэтому адаптеры **не хардкодят номера колонок**, а идут по шапке своего блока: в каждой строке raw-dump лежит `_header` — позиционный список колонок этого блока (см. ниже).
+
+`service.py` пишет **два формата**:
+- `data/<slug>.json` — **item-модель страницы** (раздел 3), то, что грузит `js/index.js`; строится адаптерами `ADAPTERS` (см. ниже про дефолты).
+- `data/raw/<slug>.json` — **честный sheet-native dump** (массив объектов-строк на лист), из которого строится адаптер. Поля = имена шапки блока (slug-ified; дубликаты → `_2`; безымянные колонки → `c<i>`), плюс:
+  - `_row` — номер строки в листе; `_top` — верхний раздел (чёрный фон); `_section` — ближайший (у одноуровневых листов = `_top`); `_header` — **шапка этого блока** (позиционный список колонок, включая `c<i>` для безымянных): по ней адаптеры и раскладывают значения, т.к. у каждой категории шапка своя; `_recommended` — оранжевая подсветка (см. ниже).
+  - `weapons`: `name, talent_1..N, location, vendor` (N зависит от блока: 2 у Pistol, 3 у остальных) — разделы: `Exotic`; `High End`→`Pistol|SMG|Assault Rifle|Shotgun|Marksman Rifle|LMG`.
+  - `gear`: `name, main_stat` (напр. `"1218 ST"`, `"1139 FA"`), `attribute_1..N` (напр. `"4 All Resistances"`), `location, vendor` — разделы: `Gear Set`/`High End`→`Chest|Mask|Knee Pads|Backpack|Gloves|Holster`; N = 3 (Chest/Gloves), 2 (Mask/Backpack), 4 (Knee Pads), 1 (Holster).
+  - `weapon-mods`: `name`, пары `cN` (значение) + `attribute_N` (имя), `location, vendor` — разделы: `Magazine|Muzzle|Underbarrel|Sight`; **значение стоит в колонке слева от своего атрибута** (`c1↔attribute_1`, `c3↔attribute_2`, `c5↔attribute_3`, `c7↔attribute_4` у Muzzle). Отдельного `attribute_4` в других блоках нет.
+  - `gear-mods`: `c0` (пусто — колонки name нет), `type` (`Firearms|Armor|Electronics|Performance|Stamina Mod`), `stat_value` (`"245"`, `"-"`), `c3` (число-значение бонуса), `attribute`, `location, vendor` — разделы: `High End|Superior`.
+- `welcome.json` — строки-заметки листа Welcome; строка `Last Update: ...` дублируется в `meta.json: sheet_last_update`.
+- `meta.json`: `source`, `synced_at`, `sheets` (gid/url/rows/file/raw per sheet), `history` (последние 16 sync'ов).
+- **Blueprints** (gid 1313121930) не синкронизируется (`SKIP_SHEETS` в `service.py`) — лист не используется (решение от 18.09.2026).
+
+**Адаптеры с дефолтами** (`ADAPTERS` в `service.py`): `data/<slug>.json` → item-модель, **раскладка берётся из `_header` блока** (никаких хардкодных номеров колонок — иначе теряются данные: так терялась 4-я пара Muzzle `c7↔attribute_4`). Правила: `type`-тег компонента из `_top`/`_section` (Exotic→`exotic`, gear-мод High End→`purple-mod`, Superior→`gear-mod`); `price="$0"`; `bonus="-"`; `fire/stam/elec="-"` (=205); talents — все `talent_*` блока по порядку (2 или 3); gear `armor=main_stat`, `major=первый attribute_*`, `minor=` остальные (1..3 шт. по слоту); weapon-mod `attributes` = все пары `значение атрибут` через `<br/>`; gear-mod `stat=stat_value`, `attribute="c3 attribute"`. Служебные `_row/_top/_section` переносятся в item (страница их игнорирует, а поиск/отладка удобнее). Сверка «raw ↔ item» после правок адаптера: **0 расхождений** по числу талантов/атрибутов/пар.
+
+**`recommended` — не дефолт, а реальные данные**: в листе рекомендованные позиции подсвечены оранжевым (заметка в Welcome: "Recommended Items are highlighted with this shade of orange"), цвет `#ffbb7f`. Парсер помечает строку `_recommended: true` (сравнение **по цвету**, не по номеру класса — в разных листах это `sN` с разными N), адаптер отдаёт `recommended: "Yes"` (страница: класс `req` + `recommended == 'Yes'`). На 18.09.2026: weapons 3, gear 4, weapon-mods 3, gear-mods 3.
+
+**Чего в листе нет** (и что страница поэтому не покажет): `dmg/rpm/mag` у оружия, явное `major/minor` у брони (адаптер берёт первый `attribute_*` в major, остальные в minor — разделение наше, в листе его нет), цены. Отдельно: **иконки слотов** страница выводит regex'ом по `name` (`weapon.vue` — по `bonus`, `gear.vue` — по `name`, см. 4.5/4.6), а имена из листа ("Enduring", "D3-FNC", "Extended Magazine") под эти regexp не подходят — карточка рендерится, но иконка может остаться дефолтной (`pistol`/`none`). Настоящий класс/слот есть в `_section` листа — если нужны верные иконки, это правка фронтенда (пробрасывать `_section` в computed), а не дефолт.
 
 ## 4. Ключевые паттерны и правила разработки
 
@@ -97,6 +135,17 @@ images/             # Спрайты: talents.png, weapons.png, stats.png, sets.
 ### 4.10 Responsive
 Grid `.container` в `css/style.css`: 5 колонок → 4 → 3 → 2 → 1 по breakpoint'ам 1849/1479/1109/739px. Карточка `.item` — фиксированная 3-колоночная grid с `grid-template-areas`.
 
+### 4.11 Сервис `service.py` — правила
+- Stdlib-only (`.venv` пустой: только pip). Запуск: `.venv/bin/python service.py [--port 8090] [--interval сек] | --sync-only`.
+- Cycle: sync on start, затем раз в `--interval` (по умолчанию 604800 сек = неделя); при сбое sync — retry раз в 15 минут, старые `data/*.json` сохраняются (write атомарный: `.tmp` + `os.replace`).
+- API: `GET /` (JSON index, поле `app` = путь к странице), `GET /status` (meta + `next_sync_at`), `GET /data/<slug>.json` (item-модель), `GET /data/raw/<slug>.json` (честный dump), `POST /sync`.
+- **Статика и страница — тем же процессом**: `GET /divn/` (→ `index.html`), `GET /divn/<path>` — любой файл проекта, кроме dot-каталогов (`.git`, `.venv`, `.work`, `.codegraph`) и собственных исходников сервиса (`service.py`, `demo-server.js`); `GET /divn` → 301 на `/divn/`; есть `HEAD`. Обход каталога (`/divn/../`, `%2e%2e`) блокируется (403/404). MIME по расширению (`.vue` отдаётся как `application/javascript`, файлы без расширения — `text/plain`), для `.html`/`.json` — `Cache-Control: no-cache` (данные обновляются раз в неделю).
+- Парсинг: `html.parser` (не bs4) по статичным subpage-листам `{SOURCE}/sheet?headers=false&gid={gid}`; список листов (name→gid) парсится из pubhtml-страницы regex'ом `name: "..." ... gid: "..."`.
+- Section-логика: строка = секция, если ровно одна непустая ячейка и её CSS-стиль — не "note" (border/vertical-align); top-секция = чёрный фон. Если в листе черных нет — каждая секция считается top (`_top` = `_section`). «Рекомендовано» = оранжевый фон `#ffbb7f` (сравнение по цвету, не по номеру класса). Всё это завязано на CSS published-страницы: если владелец листа перестилизует таблицу — прогнать `--sync-only` и сверить секции/`_recommended` с `data/raw/*.json`.
+- `data/*.json` — артефакты sync'а: не править руками, не коммитить изменения от руки; при необходимости пересчитать — `POST /sync` или `--sync-only`.
+- **Проверка после правки парсера/адаптера**: `node .work/smoke_page.js` — прогоняет реальные `computed` компонентов из `js/*.vue` по `data/*.json` и ловит падения вида `undefined.split(...)` (сейчас: 247 items, OK). Плюс `--sync-only` и сверка числа строк/секций с `data/raw/*.json`.
+- Частота запросов к Google — 1 раз в неделю (по просьбе владельца данных; на листе есть anti-scraping заметка — частых fetch'ей не делать).
+
 ## 5. Известные дефекты (не чинить без запроса, но знать)
 
 1. **`_.debounce` мёртвый код** (`js/index.js:57-58`): результат не используется; `handleOrientation` вызывается на каждое событие.
@@ -115,5 +164,7 @@ Grid `.container` в `css/style.css`: 5 колонок → 4 → 3 → 2 → 1 �
 - Не переключать `fetch` на `axios` точечно —axios не используется, `fetch` работает.
 - Не менять префикс `/divn/` в CSS без изменения деплоя.
 - Не нарушать порядок `<script>` в `index.html`.
-- Не переключать `url` на внешние источники — первоисточник мёртв; всё демо — на `data/*.json`.
+- Не переключать `url` на внешние источники — первоисточник мёртв; страница берёт `data/*.json` (их генерирует `service.py`).
+- Не править `data/*.json` руками и не увеличивать частоту sync'а выше раза в неделю (волонтёрские данные, на листе anti-scraping заметка).
+- Не ставить зависимости в `.venv` без необходимости: `service.py` осознанно stdlib-only.
 - Не переписывать ES5-стиль (`var`, callbacks) в ES6/модули точечно — без смены всего конвейера это только усложнит diff.
