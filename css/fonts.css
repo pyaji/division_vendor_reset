@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Borda;
+    src: url(/divn/fonts/Borda/Borda.ttf);
+}
+@font-face {
+    font-family: "Borda Bold";
+    src: url(/divn/fonts/Borda/Borda\ Bold.ttf);
+}
+@font-face {
+    font-family: "Borda Light";
+    src: url(/divn/fonts/Borda/Borda\ Light.ttf);
+}
+@font-face {
+    font-family: "Borda Medium";
+    src: url(/divn/fonts/Borda/Borda\ Medium.ttf);
+}
+@font-face {
+    font-family: "Borda DemiBold";
+    src: url(/divn/fonts/Borda/Borda\ DemiBold.ttf);
+}

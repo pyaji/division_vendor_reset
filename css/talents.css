@@ -1,0 +1,162 @@
+.talent {
+    background-image: url(/divn/images/talents.png);
+    background-position: 0px 0px;
+    width: 80px;
+    height: 80px;
+    background-size: 650px;
+    opacity: 0.5;
+}
+.talent.accurate {
+	background-position: 80px -245px;
+}
+.talent.adept {
+	background-position: 406px -245px;
+}
+.talent.ambusher {
+	background-position: -82px 162px;
+}
+.talent.balanced {
+	background-position: 486px -245px;
+}
+.talent.brutal {
+	background-position: 161px -82px;
+}
+.talent.capable {
+	background-position: 323px -245px;
+}
+.talent.commanding {
+	background-position: 0px -325px;
+}
+.talent.competent {
+	background-position: 243px -245px;
+}
+.talent.coolheaded {
+	background-position: 568px -162px;
+}
+.talent.deadly {
+	background-position: 323px 0px;
+}
+.talent.destructive {
+	background-position: 565px 0px;
+}
+.talent.determined {
+	background-position: 243px -162px;
+}
+.talent.disciplined {
+	background-position: 0px -406px;
+}
+.talent.dominant {
+	background-position: -82px -325px;
+}
+.talent.elevated {
+	background-position: -162px 162px;
+}
+.talent.expert {
+	background-position: 80px -326px;
+}
+.talent.ferocious {
+	background-position: 0px 0px;
+}
+.talent.fierce {
+	background-position: 243px 0px;
+}
+.talent.focused {
+	background-position: -488px -406px;
+}
+.talent.harmful {
+	background-position: 489px 0px;
+}
+.talent.hurried {
+	background-position: -325px -406px;
+}
+.talent.intense {
+	background-position: 406px -82px;
+}
+.talent.meticulous {
+	background-position: 404px -162px;
+}
+.talent.predatory {
+	background-position: 162px -162px;
+}
+.talent.prepared {
+	background-position: 568px -81px;
+}
+.talent.proficient {
+	background-position: 567px -245px;
+}
+.talent.responsive {
+	background-position: 405px 0px;
+}
+.talent.selfpreserved {
+	background-position: 160px 0px;
+}
+.talent.skilled {
+	background-position: 80px -82px;
+}
+.talent.sustained {
+	background-position: 80px -161px;
+}
+.talent.swift {
+	background-position: 487px -81px;
+}
+.talent.talented {
+	background-position: 485px -164px;
+}
+.talent.toxic {
+	background-position: 243px -80px;
+}
+.talent.trained {
+	background-position: 80px 0px;
+}
+.talent.unforgiving {
+	background-position: 0px -82px;
+}
+.talent.vicious {
+	background-position: 324px -82px;
+}
+.talent.goldenrhino {
+    background-position: -82px -406px;
+}
+.talent.showstopper {
+    background-position: -245px -406px;
+}
+.talent.dsitructed {
+    background-position: -407px -406px;
+}
+.talent.carefree {
+    background-position: -568px -406px
+}
+.talent.playrough {
+	background-position: 0px -406px;
+}
+.talent.historyrepeats {
+    background-image: url(/divn/images/talents2.png);
+    background-position: -245px 0px;
+}
+.talent.boomstick {
+    background-position: -244px 81px;
+}
+.talent.pakhan {
+    background-position: -408px 81px;
+}
+.talent.reservd {
+    background-position:  567px -245px
+}
+.talent.reservd1 {
+    background-position: -163px -325px;
+}
+.talent.reservd2 {
+    background-position: -244px -325px;
+}
+.talent.reservd3 {
+    background-position: -325px -325px;
+}
+.talent.reservd4 {
+    background-position: -407px -325px;
+}
+.talent.reservd5 {
+    background-position: -486px -325px;
+}
+.talent.reservd6 {
+    background-position: -163px -406px;
+}

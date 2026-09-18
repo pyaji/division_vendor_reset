@@ -1,0 +1,135 @@
+.gear-icon {
+    width: 80px;
+    height: 80px;
+    background-position: -35px 0px;
+    background-size: 156px;
+}
+.gear-icon.holster {
+    background-image: url(/divn/images/items/holster.png)
+}
+.gear-icon.chest {
+    background-image: url(/divn/images/items/chest.png)
+}
+.gear-icon.mask {
+    background-image: url(/divn/images/items/mask.png)
+}
+.gear-icon.kneepads {
+    background-image: url(/divn/images/items/kneepads.png)
+}
+.gear-icon.backpack {
+    background-image: url(/divn/images/items/backpack.png)
+}
+.gear-icon.gloves {
+    background-image: url(/divn/images/items/gloves.png)
+}
+
+/*
+.gear-icon {
+    background-image: url(/divn/images/items2.png);
+    width: 80px;
+    height: 80px;
+    background-size: 620px;
+}
+.gear-icon.holster {
+    background-position: 1px -318px
+}
+.gear-icon.chest {
+    background-position: -81px -318px
+}
+.gear-icon.mask {
+    background-position: -238px -318px
+}
+.gear-icon.kneepads {
+    background-position: -478px -318px
+}
+.gear-icon.backpack {
+    background-position: -157px -318px
+}
+.gear-icon.gloves {
+    background-position: -399px -318px
+}
+*/
+.set-icon {
+    width: 80px;
+    height: 80px;
+    left: 0px !important;
+    position: relative;
+    z-index: 0;
+    display: block;
+    top: -80px;
+    right: -2px;
+    float: right;
+    border-radius: 3px;
+    background-image: url(/divn/images/sets.png);
+    background-size: 630px;
+    opacity: 0.5;
+    background-position: 0px 0px;
+
+}
+.set-icon.striker {
+    background-position: 0px 0px;
+}
+.set-icon.hunters {
+    background-position: -81px 0px;
+}
+.set-icon.sentry {
+    background-position: -235px 0px;
+}
+.set-icon.d3-fnc {
+    background-position: -78px -77px;
+}
+.set-icon.predator {
+    background-position: -392px 0px;
+}
+.set-icon.nomad {
+    background-position: -155px 0px;
+}
+.set-icon.reclaimer {
+    background-position: -468px -77px;
+}
+.set-icon.firecrest {
+    background-position: -549px -77px;
+}
+.set-icon.alphabridge {
+    background-position: 0px -157px;
+}
+.set-icon.banshee {
+    background-position: -316px -77px;
+}
+.set-icon.deadeye {
+    background-position: -78px -157px;
+}
+.set-icon.finalmeasure {
+    background-position: -475px 0px;
+}
+.set-icon.tactician {
+    background-position: -315px 0px;
+}
+.set-icon.lonestar {
+    background-position: 80px 0px;
+}
+
+.icon-stat {
+    background-image: url(/divn/images/stats.png);
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-block;
+    background-size: 82px;
+    vertical-align: middle;
+    margin-right: 2px;
+}
+.icon-stat.fa {
+    background-position: 0px -1px;
+}
+.icon-stat.sta {
+    background-position: -21px -1px;
+}
+.icon-stat.ele {
+    background-position: -42px -1px;
+}
+.gear-mod .icon-stat, .purple-mod .icon-stat {
+    position: relative;
+    top: -79px;
+    float: right;
+    filter: none !important;
+}

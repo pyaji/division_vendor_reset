@@ -1,0 +1,136 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+    <!--link href="/css/bootstrap.min.css" rel='stylesheet'>
+    <link href="/css/bootstrap-vue.css" rel='stylesheet'-->
+    <script src='js/vue.js'></script>
+    <!--script src='/js/bootstrap-vue.js'></script-->
+    <script src='js/axios.min.js'></script>
+    <script src='js/lodash.min.js'></script>
+    <script src='js/weapon.vue'></script>
+    <script src='js/weapon-mod.vue'></script>
+    <script src='js/gear-mod.vue'></script>
+    <script src='js/gear.vue'></script>
+    <script src='js/vendor-item.vue'></script>
+    <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/talents.css" rel="stylesheet">
+    <link href="css/gear.css" rel="stylesheet">
+</head>
+<body> 
+    <template id='weapon'>
+    <div class='subitem'>
+        <div class='icon'>
+            <div class='weapon-type' :class='[
+                "weapon-type-" + type,
+            ]'></div>
+        </div>
+        <div class="talent"
+                v-for="(talent, i) in talents"
+                v-bind:class="[
+                    talent.toLowerCase().replace(/[- ]*/g, ''),
+                    'talent' + i
+                ]" v-bind:title='talent'>
+            {{ talent }}
+        </div>
+        <p class='bonus' v-if='item.bonus != "-"'>
+            {{ item.bonus }}
+        </p>
+        <div class="dmg"><P>DMG</P>{{ item.dmg }}</div>
+        <div class="rpm"><P>RPM</P>{{ item.rpm }}</div>
+        <div class="mag"><P>MAG</P>{{ item.mag }}</div>
+    </div>
+    </template>
+    
+    <template id='weapon-mod'>
+        <div class='subitem'>
+            <div class='icon'>
+                <div class='weapon-mod-icon' v-bind:class='[type]'></div>
+            </div>
+            <div class='attrs'>
+                <p v-for='attr in attributes'>{{ attr }}</p>
+            </div>
+        </div>
+    </template> 
+    
+    <template id='gear'>
+    <div class='subitem'>
+        <div class='icon' :class='[item.rarity]'>
+            <div class='gear-icon' :class="[type]"></div>
+            <div 
+                v-if='item.rarity == "header-gs"'
+                class='set-icon'
+                :class="[set]">
+            </div>
+        </div>
+        <div class='armor'><p>ARMOR</p>{{ item.armor }}</div>
+        <div class='fire'><div class='icon-stat fa'></div>{{ fire }}</div>
+        <div class='stam'><div class='icon-stat sta'></div>{{ stam }}</div>
+        <div class='elec'><div class='icon-stat ele'></div>{{ elec }}</div>
+        <div class='minor' v-if='minor'>
+            <p>Minor</p>
+            <ul>
+            <ol v-for="attr in minor">{{ attr }}</ol>
+            </ul>
+        </div>
+        <div class='major' v-if='major'>
+            <p>Major</p>
+            <ul>
+                <ol v-for="attr in major">{{ attr }}</ol>
+            </ul>
+        </div>
+    </div>
+    </template>
+
+    <template id='gear-mod'>
+    <div class='subitem'>
+        <div class='icon'>
+            <div
+                class='gear-item'
+                :class='[{"perfomance": ! has_stat }]'>
+            </div>
+            <div class='icon-stat' :class="[has_stat]" v-if="has_stat">
+            </div>
+        </div>
+        <div class='stat'>
+            <p v-for='attr in stat'>{{attr}}</p>
+        </div>
+    </div>
+    </template>
+
+    <template id='vendor-item'>
+    <div v-bind:class='[{req: recommended}, item.type]'>
+        <div class='blur'></div>
+        <div class='name' :class="[name_color]">{{ item.name }}</div>
+        <component :is='item.type' v-bind:item='item' :class='[item.type]'></component>
+        <p class='vendor'>{{ item.vendor }}</p>
+        <p class='price' :class='[cur]'>
+            <span class='icon-cur' :class='[cur]'></span>
+            {{ price }}
+        </p>
+    </div> 
+    </template>
+
+    <div id="app">
+        <div id='app_header'>
+            <h1>Vendor Reset</h1>
+        </div>
+        <div id='app_filter'>
+            <input id="filter" v-model='filter' placeholder='Filter Regexp'>
+        </div>
+        <div id='app_vender'>
+            <br>
+            <div id='vender_reset' class='container'>
+                <vendor-item 
+                    v-for="item in filtered_items"
+                    class='item'
+                    v-bind:item="item"
+                >
+                </vendor-item>
+            </div>
+        </div>
+    </div>
+    <script src='js/index.js'></script>
+</body> 
+</html>
