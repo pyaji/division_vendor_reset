@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Maximum Armor Mod",
+    "type": "gear-mod",
+    "vendor": "Mercantile",
+    "price": "$400",
+    "recommended": "No",
+    "stat": "-",
+    "attribute": "15% increased Maximum Armor"
+  },
+  {
+    "name": "Carry Weight Mod",
+    "type": "gear-mod",
+    "vendor": "The Broker",
+    "price": "$350",
+    "recommended": "No",
+    "stat": "-",
+    "attribute": "20% increased Carry Weight"
+  },
+  {
+    "name": "Rapid Reload Mod",
+    "type": "gear-mod",
+    "vendor": "The Gunrunner",
+    "price": "$300",
+    "recommended": "Yes",
+    "stat": "-",
+    "attribute": "10% improved Reload Speed"
+  },
+  {
+    "name": "Fire Resistance Mod I",
+    "type": "gear-mod",
+    "vendor": "The Fixer",
+    "price": "$450",
+    "recommended": "No",
+    "stat": "10%",
+    "attribute": "increased Fire Resistance"
+  },
+  {
+    "name": "Electrical Resistance Mod I",
+    "type": "gear-mod",
+    "vendor": "The Fixer",
+    "price": "$450",
+    "recommended": "No",
+    "stat": "10%",
+    "attribute": "increased Electrical Resistance"
+  },
+  {
+    "name": "Water Resistance Mod II",
+    "type": "gear-mod",
+    "vendor": "The Supplier",
+    "price": "$550",
+    "recommended": "No",
+    "stat": "20%",
+    "attribute": "increased Water Resistance"
+  },
+  {
+    "name": "Stun Resistance TDA",
+    "type": "purple-mod",
+    "vendor": "Black Market",
+    "price": "$700",
+    "recommended": "No",
+    "stat": "12%",
+    "attribute": "increased Stun Resistance"
+  },
+  {
+    "name": "Armor TDA",
+    "type": "purple-mod",
+    "vendor": "Black Market",
+    "price": "$650",
+    "recommended": "Yes",
+    "stat": "-",
+    "attribute": "20% increased Maximum Armor"
+  },
+  {
+    "name": "Stamina Recovery TDA",
+    "type": "purple-mod",
+    "vendor": "Black Market",
+    "price": "$600",
+    "recommended": "No",
+    "stat": "15%",
+    "attribute": "increased Stamina Recovery"
+  },
+  {
+    "name": "Physical Resistance TDA",
+    "type": "purple-mod",
+    "vendor": "Black Market",
+    "price": "$750",
+    "recommended": "No",
+    "stat": "12%",
+    "attribute": "increased Physical Resistance"
+  }
+]

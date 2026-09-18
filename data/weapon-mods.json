@@ -1,0 +1,82 @@
+[
+  {
+    "name": "M16A4 30 Round Extended Magazine",
+    "type": "weapon-mod",
+    "vendor": "The Broker",
+    "price": "$300",
+    "recommended": "Yes",
+    "attributes": "25% increased Magazine Size<br/>5% reduced Movement Speed"
+  },
+  {
+    "name": "M249 100 Round Extended Magazine",
+    "type": "weapon-mod",
+    "vendor": "The Supplier",
+    "price": "$350",
+    "recommended": "No",
+    "attributes": "30% increased Magazine Size<br/>8% reduced Movement Speed"
+  },
+  {
+    "name": "Tactical Grip",
+    "type": "weapon-mod",
+    "vendor": "The Gunrunner",
+    "price": "$250",
+    "recommended": "No",
+    "attributes": "15% decreased ADS Time<br/>10% reduced Recoil"
+  },
+  {
+    "name": "Hand Guard",
+    "type": "weapon-mod",
+    "vendor": "The Gunrunner",
+    "price": "$225",
+    "recommended": "No",
+    "attributes": "12% reduced Recoil<br/>5% decreased ADS Time"
+  },
+  {
+    "name": "PEQ-15",
+    "type": "weapon-mod",
+    "vendor": "Mercantile",
+    "price": "$200",
+    "recommended": "No",
+    "attributes": "10% reduced Recoil<br/>15% increased Stealth"
+  },
+  {
+    "name": "ACOG Scope",
+    "type": "weapon-mod",
+    "vendor": "The Broker",
+    "price": "$325",
+    "recommended": "No",
+    "attributes": "4x Zoom<br/>5% reduced Firing Spread"
+  },
+  {
+    "name": "Red Dot Sight",
+    "type": "weapon-mod",
+    "vendor": "The Fixer",
+    "price": "$175",
+    "recommended": "No",
+    "attributes": "1x Zoom<br/>20% decreased ADS Time"
+  },
+  {
+    "name": "Suppressor",
+    "type": "weapon-mod",
+    "vendor": "Black Market",
+    "price": "$400",
+    "recommended": "Yes",
+    "attributes": "20% increased Stealth<br/>15% reduced Muzzle Flash"
+  },
+  {
+    "name": "Flash Hider",
+    "type": "weapon-mod",
+    "vendor": "Mercantile",
+    "price": "$150",
+    "recommended": "No",
+    "attributes": "10% reduced Recoil<br/>10% reduced Muzzle Flash"
+  },
+  {
+    "name": "Compensator",
+    "type": "weapon-mod",
+    "vendor": "The Supplier",
+    "price": "$275",
+    "recommended": "No",
+    "attributes": "15% reduced Recoil<br/>5% reduced Firing Spread"
+  }
+]

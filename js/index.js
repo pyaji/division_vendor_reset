@@ -4,7 +4,8 @@ var gear_types = [
   'gear',
   'gear-mods'
 ]
-var url = 'https://cors.io/?http://rubenalamina.mx/division/'
+// var url = 'https://cors.io/?http://rubenalamina.mx/division/'  // первоисточник недоступен
+var url = 'data/'
 var app_data = {
   items: [],
   message: new Date(),
