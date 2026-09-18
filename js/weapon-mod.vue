@@ -6,6 +6,10 @@ WeaponMod = {
             return this.item.attributes.split('<br/>')
         },
         type: function() {
+            // класс из данных (service.py: раздел листа Magazine/Muzzle/...) — он точный
+            if (this.item.category) {
+                return this.item.category
+            }
             types_list = {
                 'magazine': /magazine/i,
                 'grip': /grip|pointer|hand|PEQ-15/i,

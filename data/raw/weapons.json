@@ -1,0 +1,1242 @@
+[
+  {
+    "name": "Centurion",
+    "talent_1": "Expert",
+    "talent_2": "Commanding",
+    "talent_3": "",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 5,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Centurion",
+    "talent_1": "Expert",
+    "talent_2": "Competent",
+    "talent_3": "",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 6,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Liberator",
+    "talent_1": "Vicious",
+    "talent_2": "Brutal",
+    "talent_3": "Deadly",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 7,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Liberator",
+    "talent_1": "Swift",
+    "talent_2": "Commanding",
+    "talent_3": "Brutal",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 8,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Cassidy",
+    "talent_1": "Self-preserved",
+    "talent_2": "Trained",
+    "talent_3": "Boomstick",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 9,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Cassidy",
+    "talent_1": "Swift",
+    "talent_2": "Adept",
+    "talent_3": "Boomstick",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 10,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Historian",
+    "talent_1": "Talented",
+    "talent_2": "Proficient",
+    "talent_3": "History Repeats",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 11,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Historian",
+    "talent_1": "Proficient",
+    "talent_2": "Intense",
+    "talent_3": "History Repeats",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 12,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Pakhan",
+    "talent_1": "Deadly",
+    "talent_2": "Commanding",
+    "talent_3": "Pakhan",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 13,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Pakhan",
+    "talent_1": "Determined",
+    "talent_2": "Deadly",
+    "talent_3": "Pakhan",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 14,
+    "_top": "Exotic",
+    "_section": "Exotic",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Custom PF45",
+    "talent_1": "Expert",
+    "talent_2": "Coolheaded",
+    "c3": "",
+    "location": "Base of Operations",
+    "vendor": "Advanced Weaponry",
+    "_row": 19,
+    "_top": "High End",
+    "_section": "Pistol",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "c3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": true
+  },
+  {
+    "name": "Military M9",
+    "talent_1": "Expert",
+    "talent_2": "Vicious",
+    "c3": "",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 20,
+    "_top": "High End",
+    "_section": "Pistol",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "c3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Police 686 Magnum",
+    "talent_1": "Expert",
+    "talent_2": "Commanding",
+    "c3": "",
+    "location": "DZ03 Safe Room",
+    "vendor": "Dark Zone Weapon",
+    "_row": 21,
+    "_top": "High End",
+    "_section": "Pistol",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "c3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Px4 Storm Type F",
+    "talent_1": "Expert",
+    "talent_2": "Accurate",
+    "c3": "",
+    "location": "Base of Operations",
+    "vendor": "Dark Zone",
+    "_row": 22,
+    "_top": "High End",
+    "_section": "Pistol",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "c3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Rhino",
+    "talent_1": "Expert",
+    "talent_2": "Intense",
+    "c3": "",
+    "location": "DZ Park Ave",
+    "vendor": "Dark Zone Weapon",
+    "_row": 23,
+    "_top": "High End",
+    "_section": "Pistol",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "c3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Snubnosed Rhino",
+    "talent_1": "Expert",
+    "talent_2": "Harmful",
+    "c3": "",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 24,
+    "_top": "High End",
+    "_section": "Pistol",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "c3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "AUG A3 Para XS",
+    "talent_1": "Vicious",
+    "talent_2": "Responsive",
+    "talent_3": "Competent",
+    "location": "Base of Operations",
+    "vendor": "Advanced Weaponry",
+    "_row": 28,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "AUG A3 Para XS",
+    "talent_1": "Responsive",
+    "talent_2": "Unforgiving",
+    "talent_3": "Fierce",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 29,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "First Wave Vector 45 ACP",
+    "talent_1": "Predatory",
+    "talent_2": "Ferocious",
+    "talent_3": "Determined",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 30,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "First Wave Vector 45 ACP",
+    "talent_1": "Competent",
+    "talent_2": "Vicious",
+    "talent_3": "Predatory",
+    "location": "DZ East 53rd",
+    "vendor": "Dark Zone",
+    "_row": 31,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "MP5 ST",
+    "talent_1": "Fierce",
+    "talent_2": "Commanding",
+    "talent_3": "Predatory",
+    "location": "DZ East 42nd",
+    "vendor": "Dark Zone",
+    "_row": 32,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "MP5 ST",
+    "talent_1": "Dominant",
+    "talent_2": "Adept",
+    "talent_3": "Accurate",
+    "location": "Kerman Station",
+    "vendor": "Weapon",
+    "_row": 33,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "MP5 ST",
+    "talent_1": "Dominant",
+    "talent_2": "Capable",
+    "talent_3": "Destructive",
+    "location": "The Last Call",
+    "vendor": "Weapon",
+    "_row": 34,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Police T821",
+    "talent_1": "Adept",
+    "talent_2": "Fierce",
+    "talent_3": "Swift",
+    "location": "The Crypt",
+    "vendor": "Weapon",
+    "_row": 35,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Police UMP-45",
+    "talent_1": "Destructive",
+    "talent_2": "Determined",
+    "talent_3": "Ambusher",
+    "location": "DZ West 39th",
+    "vendor": "Dark Zone",
+    "_row": 36,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical UMP-45",
+    "talent_1": "Self-preserved",
+    "talent_2": "Competent",
+    "talent_3": "Ambusher",
+    "location": "DZ03 Safe Room",
+    "vendor": "Dark Zone Weapon",
+    "_row": 37,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical Vector 45 ACP",
+    "talent_1": "Competent",
+    "talent_2": "Vicious",
+    "talent_3": "Meticulous",
+    "location": "DZ Park Ave",
+    "vendor": "Dark Zone Weapon",
+    "_row": 38,
+    "_top": "High End",
+    "_section": "SMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Classic AK-47",
+    "talent_1": "Predatory",
+    "talent_2": "Dominant",
+    "talent_3": "Ferocious",
+    "location": "Base of Operations",
+    "vendor": "Advanced Weaponry",
+    "_row": 42,
+    "_top": "High End",
+    "_section": "Assault Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Classic AK-47",
+    "talent_1": "Focused",
+    "talent_2": "Capable",
+    "talent_3": "Brutal",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 43,
+    "_top": "High End",
+    "_section": "Assault Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "G36 Enhanced",
+    "talent_1": "Ferocious",
+    "talent_2": "Vicious",
+    "talent_3": "Focused",
+    "location": "DZ West 53rd",
+    "vendor": "Dark Zone",
+    "_row": 44,
+    "_top": "High End",
+    "_section": "Assault Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Lightweight M4",
+    "talent_1": "Ferocious",
+    "talent_2": "Fierce",
+    "talent_3": "Predatory",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 45,
+    "_top": "High End",
+    "_section": "Assault Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": true
+  },
+  {
+    "name": "Military SA-58",
+    "talent_1": "Responsive",
+    "talent_2": "Ferocious",
+    "talent_3": "Sustained",
+    "location": "DZ Park Ave",
+    "vendor": "Dark Zone Weapon",
+    "_row": 46,
+    "_top": "High End",
+    "_section": "Assault Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "SOCOM SCAR-L",
+    "talent_1": "Sustained",
+    "talent_2": "Meticulous",
+    "talent_3": "Talented",
+    "location": "DZ03 Safe Room",
+    "vendor": "Dark Zone Weapon",
+    "_row": 47,
+    "_top": "High End",
+    "_section": "Assault Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical SA-58",
+    "talent_1": "Meticulous",
+    "talent_2": "Intense",
+    "talent_3": "Prepared",
+    "location": "DZ West 31st",
+    "vendor": "Dark Zone",
+    "_row": 48,
+    "_top": "High End",
+    "_section": "Assault Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Custom M870 MCS",
+    "talent_1": "Self-preserved",
+    "talent_2": "Vicious",
+    "talent_3": "Meticulous",
+    "location": "Base of Operations",
+    "vendor": "Advanced Weaponry",
+    "_row": 52,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Double Barrel Sawed Off",
+    "talent_1": "Self-preserved",
+    "talent_2": "Predatory",
+    "talent_3": "Commanding",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 53,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Double Barrel Sawed Off",
+    "talent_1": "Adept",
+    "talent_2": "Deadly",
+    "talent_3": "Determined",
+    "location": "DZ Park Ave",
+    "vendor": "Dark Zone Weapon",
+    "_row": 54,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": true
+  },
+  {
+    "name": "M870 Express",
+    "talent_1": "Vicious",
+    "talent_2": "Ferocious",
+    "talent_3": "Destructive",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 55,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "SASG-12",
+    "talent_1": "Fierce",
+    "talent_2": "Sustained",
+    "talent_3": "Adept",
+    "location": "DZ East 31st",
+    "vendor": "Dark Zone",
+    "_row": 56,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "SASG-12",
+    "talent_1": "Deadly",
+    "talent_2": "Meticulous",
+    "talent_3": "Sustained",
+    "location": "DZ03 Safe Room",
+    "vendor": "Dark Zone Weapon",
+    "_row": 57,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical SASG-12 K",
+    "talent_1": "Responsive",
+    "talent_2": "Commanding",
+    "talent_3": "Determined",
+    "location": "DZ 5th Ave",
+    "vendor": "Dark Zone",
+    "_row": 58,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical SASG-12 K",
+    "talent_1": "Dominant",
+    "talent_2": "Meticulous",
+    "talent_3": "Deadly",
+    "location": "DZ West 46th",
+    "vendor": "Dark Zone",
+    "_row": 59,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical Super 90 SBS",
+    "talent_1": "Swift",
+    "talent_2": "Deadly",
+    "talent_3": "Self-preserved",
+    "location": "DZ East 46th",
+    "vendor": "Dark Zone",
+    "_row": 60,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical Super 90 SBS",
+    "talent_1": "Ferocious",
+    "talent_2": "Self-preserved",
+    "talent_3": "Vicious",
+    "location": "The Grindhouse",
+    "vendor": "Weapon",
+    "_row": 61,
+    "_top": "High End",
+    "_section": "Shotgun",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Classic M44 Carbine",
+    "talent_1": "Sustained",
+    "talent_2": "Deadly",
+    "talent_3": "Trained",
+    "location": "Base of Operations",
+    "vendor": "Advanced Weaponry",
+    "_row": 65,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Custom M44",
+    "talent_1": "Brutal",
+    "talent_2": "Talented",
+    "talent_3": "Toxic",
+    "location": "DZ East 40th",
+    "vendor": "Dark Zone",
+    "_row": 66,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "First Wave M1A",
+    "talent_1": "Accurate",
+    "talent_2": "Proficient",
+    "talent_3": "Sustained",
+    "location": "DZ West 34th",
+    "vendor": "Dark Zone",
+    "_row": 67,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "First Wave M1A",
+    "talent_1": "Skilled",
+    "talent_2": "Predatory",
+    "talent_3": "Unforgiving",
+    "location": "DZ03 Safe Room",
+    "vendor": "Dark Zone Weapon",
+    "_row": 68,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "M700 Tactical",
+    "talent_1": "Capable",
+    "talent_2": "Disciplined",
+    "talent_3": "Elevated",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 69,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Police Mk17",
+    "talent_1": "Swift",
+    "talent_2": "Accurate",
+    "talent_3": "Dominant",
+    "location": "DZ West 42nd",
+    "vendor": "Dark Zone",
+    "_row": 70,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "SOCOM M1A",
+    "talent_1": "Competent",
+    "talent_2": "Accurate",
+    "talent_3": "Brutal",
+    "location": "DZ Park Ave",
+    "vendor": "Dark Zone Weapon",
+    "_row": 71,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Surplus SVD",
+    "talent_1": "Brutal",
+    "talent_2": "Fierce",
+    "talent_3": "Disciplined",
+    "location": "Base of Operations",
+    "vendor": "Weapon",
+    "_row": 72,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Surplus SVD",
+    "talent_1": "Destructive",
+    "talent_2": "Capable",
+    "talent_3": "Disciplined",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 73,
+    "_top": "High End",
+    "_section": "Marksman Rifle",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Black Market M60 E6",
+    "talent_1": "Swift",
+    "talent_2": "Self-preserved",
+    "talent_3": "Sustained",
+    "location": "DZ East 34th",
+    "vendor": "Dark Zone",
+    "_row": 77,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Black Market M60 E6",
+    "talent_1": "Deadly",
+    "talent_2": "Accurate",
+    "talent_3": "Vicious",
+    "location": "Wolves Den",
+    "vendor": "Weapon",
+    "_row": 78,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Black Market RPK-74 E",
+    "talent_1": "Unforgiving",
+    "talent_2": "Skilled",
+    "talent_3": "Commanding",
+    "location": "Base of Operations",
+    "vendor": "Advanced Weaponry",
+    "_row": 79,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "M249 B",
+    "talent_1": "Ferocious",
+    "talent_2": "Predatory",
+    "talent_3": "Accurate",
+    "location": "Camp Clinton",
+    "vendor": "Special Equipment",
+    "_row": 80,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "M249 B",
+    "talent_1": "Unforgiving",
+    "talent_2": "Talented",
+    "talent_3": "Commanding",
+    "location": "Camp Hudson",
+    "vendor": "Weapon",
+    "_row": 81,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Military RPK-74 M",
+    "talent_1": "Fierce",
+    "talent_2": "Prepared",
+    "talent_3": "Self-preserved",
+    "location": "DZ Park Ave",
+    "vendor": "Dark Zone Weapon",
+    "_row": 82,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Military RPK-74 M",
+    "talent_1": "Unforgiving",
+    "talent_2": "Predatory",
+    "talent_3": "Skilled",
+    "location": "The Terminal",
+    "vendor": "Special Equipment",
+    "_row": 83,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical M249 Para",
+    "talent_1": "Brutal",
+    "talent_2": "Predatory",
+    "talent_3": "Adept",
+    "location": "DZ03 Safe Room",
+    "vendor": "Dark Zone Weapon",
+    "_row": 84,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  },
+  {
+    "name": "Tactical M249 Para",
+    "talent_1": "Determined",
+    "talent_2": "Commanding",
+    "talent_3": "Competent",
+    "location": "The Meat Locker",
+    "vendor": "Weapon",
+    "_row": 85,
+    "_top": "High End",
+    "_section": "LMG",
+    "_header": [
+      "name",
+      "talent_1",
+      "talent_2",
+      "talent_3",
+      "location",
+      "vendor"
+    ],
+    "_recommended": false
+  }
+]

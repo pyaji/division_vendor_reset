@@ -14,6 +14,10 @@ Weapon = {
             return ret
         },
         type: function() {
+            // класс из данных (service.py: раздел листа Pistol/SMG/AR/...) — он точный
+            if (this.item.category) {
+                return this.item.category
+            }
             ret = 'pistol'
             types_list = {
                 'lmg': /out of cover/i,

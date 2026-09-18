@@ -1,3 +1,15 @@
-.venv
+# --- Python ---
+.venv/
 __pycache__/
+*.pyc
+
+# --- служебное/черновики (в репозиторий не идут) ---
+# .work: снапшоты листов Google (sheet_*.html, d1pub.html) и черновики проверок
 .work/
+# probe.html: временная страница-зонд, её создаёт и удаляет tools/inspect_icons.py
+probe.html
+
+# --- состояние sync'а ---
+# data/meta.json перегенерируется сервисом (synced_at/history) — в git не нужен.
+# Данные для страницы (weapons/weapon-mods/gear/gear-mods/welcome + raw/) коммитятся.
+data/meta.json

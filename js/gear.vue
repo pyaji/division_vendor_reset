@@ -3,6 +3,10 @@ Gear = {
     template: '#gear',
     computed: {
         type: function() {
+            // слот из данных (service.py: раздел листа Chest/Mask/...) — он точный
+            if (this.item.category) {
+                return this.item.category
+            }
             types_list = {
                 'chest': /chest/i,
                 'mask': /mask/i,

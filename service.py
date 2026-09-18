@@ -299,6 +299,77 @@ def atomic_write(path, text):
 #   attributes/stat   — строки (компоненты делают .split / .replace)
 # Честный dump листа сохраняется отдельно в data/raw/<slug>.json.
 
+# ------------------------------------------------------------------ иконки
+# Страница строит css-класс иконки из item-поля: weapon.vue/gear.vue/weapon-mod.vue
+# предпочитают готовый item.category, а свои регэкспы по имени оставлены фолбэком.
+# Ключи ниже — ровно css-классы: .weapon-type-<k>, .gear-icon.<k>, .weapon-mod-icon.<k>
+# (css/style.css, css/gear.css). Источник — раздел листа (_section): единственное
+# место, где класс/слот указан явно (имена в листе — это имена предметов/сетов).
+
+WEAPON_CLASSES = {          # _section -> .weapon-type-<k>
+    'pistol': 'pistol',
+    'smg': 'smg',
+    'assault rifle': 'ar',
+    'shotgun': 'shotgun',
+    'marksman rifle': 'marksman',
+    'lmg': 'lmg',
+}
+# У экзотики в листе класса нет (только таланты) — таблица вручную, по имени.
+# Дополнять при появлении новых экзотиков в листе.
+EXOTIC_CLASSES = {
+    'cassidy': 'shotgun',
+    'centurion': 'pistol',
+    'historian': 'marksman',
+    'liberator': 'ar',
+    'pakhan': 'lmg',
+}
+GEAR_SLOTS = {              # _section -> .gear-icon.<k>
+    'chest': 'chest',
+    'mask': 'mask',
+    'knee pads': 'kneepads',
+    'backpack': 'backpack',
+    'gloves': 'gloves',
+    'holster': 'holster',
+}
+MOD_CLASSES = {             # _section -> .weapon-mod-icon.<k>
+    'magazine': 'magazine',
+    'muzzle': 'suppressor',
+    'underbarrel': 'grip',
+    'sight': 'scope',
+}
+GEAR_SET_RARITY = 'header-gs'  # css-класс "это gear set" (шаблон #gear и name_color)
+
+# Броня в листе не указана (в колонке Main Stat лежит основной атрибут, а не armour):
+# по договорённости показываем стандартное число.
+GEAR_ARMOR = '1248'
+STAT_FIELDS = {'FA': 'fire', 'ST': 'stam', 'EL': 'elec'}   # FA->fire, ST->stam, EL->elec
+
+def _gear_stats(main_stat):
+    """Основной атрибут -> блоки FA/ST/EL карточки (gear.vue: fire/stam/elec).
+
+    Обычный слот: "1218 ST"  -> stam=1218 (FA/EL остаются "-", компонент рисует 205).
+    Кобура:       "1125|1244|1115" -> fire=1125, stam=1244, elec=1115 (порядок листа FA|ST|EL).
+    """
+    out = {'fire': '-', 'stam': '-', 'elec': '-'}
+    s = (main_stat or '').strip()
+    if not s:
+        return out
+    if '|' in s:                      # кобура: три значения по порядку FA|ST|EL
+        for key, val in zip(('fire', 'stam', 'elec'), (p.strip() for p in s.split('|'))):
+            if val:
+                out[key] = val
+        return out
+    m = re.match(r'^(.*?)\s*(FA|ST|EL)$', s)
+    if m and m.group(1).strip():
+        out[STAT_FIELDS[m.group(2)]] = m.group(1).strip()
+    return out
+
+def _category(r, table, exotics=False):
+    key = table.get((r.get('_section') or '').strip().lower())
+    if not key and exotics:
+        key = EXOTIC_CLASSES.get((r.get('name') or '').strip().lower())
+    return key or ''
+
 def _raw_refs(r):
     d = {'_row': r.get('_row'), '_top': r.get('_top'), '_section': r.get('_section')}
     d['recommended'] = 'Yes' if r.get('_recommended') else ''
@@ -346,6 +417,7 @@ def adapt_weapons(rows):
             'name': r.get('name') or '',
             'vendor': r.get('vendor') or '',
             'price': '$0',
+            'category': _category(r, WEAPON_CLASSES, exotics=True),  # класс для иконки
             'bonus': '-', 'dmg': '', 'rpm': '', 'mag': '',
         }
         # талантов у блока может быть 2 (Pistol) или 3 (остальные) — идём по шапке
@@ -359,14 +431,18 @@ def adapt_gear(rows):
     items = []
     for r in rows:
         attrs = [a for a in _cols(r, 'attribute') if a]
+        slot = (r.get('_section') or '').strip()
+        stats = _gear_stats(r.get('main_stat'))
         it = {
             'type': 'gear',
-            'name': r.get('name') or '',
+            # в имени дописываем слот: "D3-FNC" -> "D3-FNC Chest"
+            'name': ' '.join(x for x in (r.get('name') or '', slot) if x),
             'vendor': r.get('vendor') or '',
             'price': '$0',
-            'rarity': '',
-            'armor': r.get('main_stat') or '',   # напр. "1218 ST"
-            'fire': '-', 'stam': '-', 'elec': '-',
+            'category': _category(r, GEAR_SLOTS),          # слот для иконки (.gear-icon.*)
+            'rarity': GEAR_SET_RARITY if r.get('_top') == 'Gear Set' else '',
+            'armor': GEAR_ARMOR,                 # стандартное число: брони в листе нет
+            'fire': stats['fire'], 'stam': stats['stam'], 'elec': stats['elec'],
             'major': attrs[0] if attrs else '',
             'minor': '<br/>'.join(attrs[1:]),
         }
@@ -382,6 +458,7 @@ def adapt_weapon_mods(rows):
             'name': r.get('name') or '',
             'vendor': r.get('vendor') or '',
             'price': '$0',
+            'category': _category(r, MOD_CLASSES),   # иконка мода
             'attributes': _pair_lines(r) or '-',
         }
         it.update(_raw_refs(r))
