@@ -2,7 +2,7 @@
   {
     "type": "gear",
     "name": "D3-FNC Chest",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -20,7 +20,7 @@
   {
     "type": "gear",
     "name": "D3-FNC Chest",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ06 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -38,7 +38,7 @@
   {
     "type": "gear",
     "name": "DeadEYE Chest",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -56,7 +56,7 @@
   {
     "type": "gear",
     "name": "Hunter's Faith Chest",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ08 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -74,7 +74,7 @@
   {
     "type": "gear",
     "name": "Hunter's Faith Chest",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -92,7 +92,7 @@
   {
     "type": "gear",
     "name": "Nomad Chest",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -110,7 +110,7 @@
   {
     "type": "gear",
     "name": "Striker Chest",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -128,7 +128,7 @@
   {
     "type": "gear",
     "name": "Tactician Chest",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -146,7 +146,7 @@
   {
     "type": "gear",
     "name": "Tactician Chest",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ09 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "chest",
     "rarity": "header-gs",
@@ -164,7 +164,7 @@
   {
     "type": "gear",
     "name": "AlphaBridge Mask",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -182,7 +182,7 @@
   {
     "type": "gear",
     "name": "D3-FNC Mask",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ06 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -200,7 +200,7 @@
   {
     "type": "gear",
     "name": "DeadEYE Mask",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -218,7 +218,7 @@
   {
     "type": "gear",
     "name": "FireCrest Mask",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ08 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -236,7 +236,7 @@
   {
     "type": "gear",
     "name": "Hunter's Faith Mask",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ09 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -254,7 +254,7 @@
   {
     "type": "gear",
     "name": "Lone Star Mask",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -272,7 +272,7 @@
   {
     "type": "gear",
     "name": "Nomad Mask",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -290,7 +290,7 @@
   {
     "type": "gear",
     "name": "Predator's Mark Mask",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -308,7 +308,7 @@
   {
     "type": "gear",
     "name": "Reclaimer Mask",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "header-gs",
@@ -326,7 +326,7 @@
   {
     "type": "gear",
     "name": "Banshee's Shadow Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -344,7 +344,7 @@
   {
     "type": "gear",
     "name": "D3-FNC Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -362,7 +362,7 @@
   {
     "type": "gear",
     "name": "Final Measure Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -380,7 +380,7 @@
   {
     "type": "gear",
     "name": "Final Measure Knee Pads",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ08 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -398,7 +398,7 @@
   {
     "type": "gear",
     "name": "Hunter's Faith Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -416,7 +416,7 @@
   {
     "type": "gear",
     "name": "Predator's Mark Knee Pads",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ06 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -434,7 +434,7 @@
   {
     "type": "gear",
     "name": "Predator's Mark Knee Pads",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ09 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -452,7 +452,7 @@
   {
     "type": "gear",
     "name": "Reclaimer Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -470,7 +470,7 @@
   {
     "type": "gear",
     "name": "Sentry Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -488,7 +488,7 @@
   {
     "type": "gear",
     "name": "Sentry Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -506,7 +506,7 @@
   {
     "type": "gear",
     "name": "Striker Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "header-gs",
@@ -524,7 +524,7 @@
   {
     "type": "gear",
     "name": "AlphaBridge Backpack",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "backpack",
     "rarity": "header-gs",
@@ -542,7 +542,7 @@
   {
     "type": "gear",
     "name": "Lone Star Backpack",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ08 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "backpack",
     "rarity": "header-gs",
@@ -560,7 +560,7 @@
   {
     "type": "gear",
     "name": "Sentry Backpack",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ09 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "backpack",
     "rarity": "header-gs",
@@ -578,7 +578,7 @@
   {
     "type": "gear",
     "name": "Striker Backpack",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ06 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "backpack",
     "rarity": "header-gs",
@@ -596,7 +596,7 @@
   {
     "type": "gear",
     "name": "Banshee's Shadow Gloves",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "gloves",
     "rarity": "header-gs",
@@ -614,7 +614,7 @@
   {
     "type": "gear",
     "name": "FireCrest Gloves",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "gloves",
     "rarity": "header-gs",
@@ -632,7 +632,7 @@
   {
     "type": "gear",
     "name": "Hunter's Faith Gloves",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ09 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "gloves",
     "rarity": "header-gs",
@@ -650,7 +650,7 @@
   {
     "type": "gear",
     "name": "Predator's Mark Gloves",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "gloves",
     "rarity": "header-gs",
@@ -668,7 +668,7 @@
   {
     "type": "gear",
     "name": "Striker Gloves",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ06 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "gloves",
     "rarity": "header-gs",
@@ -686,7 +686,7 @@
   {
     "type": "gear",
     "name": "Tactician Gloves",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ08 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "gloves",
     "rarity": "header-gs",
@@ -704,7 +704,7 @@
   {
     "type": "gear",
     "name": "AlphaBridge Holster",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ08 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "holster",
     "rarity": "header-gs",
@@ -722,7 +722,7 @@
   {
     "type": "gear",
     "name": "Banshee's Shadow Holster",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ09 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "holster",
     "rarity": "header-gs",
@@ -740,7 +740,7 @@
   {
     "type": "gear",
     "name": "Final Measure Holster",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "holster",
     "rarity": "header-gs",
@@ -758,7 +758,7 @@
   {
     "type": "gear",
     "name": "FireCrest Holster",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "holster",
     "rarity": "header-gs",
@@ -776,7 +776,7 @@
   {
     "type": "gear",
     "name": "Lone Star Holster",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "holster",
     "rarity": "header-gs",
@@ -794,7 +794,7 @@
   {
     "type": "gear",
     "name": "Predator's Mark Holster",
-    "vendor": "Dark Zone Special",
+    "vendor": "DZ06 Safe Room, Dark Zone Special",
     "price": "$0",
     "category": "holster",
     "rarity": "header-gs",
@@ -812,7 +812,7 @@
   {
     "type": "gear",
     "name": "Tactician Holster",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "holster",
     "rarity": "header-gs",
@@ -830,7 +830,7 @@
   {
     "type": "gear",
     "name": "Forceful Chest",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ02 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -848,7 +848,7 @@
   {
     "type": "gear",
     "name": "Reckless Chest",
-    "vendor": "Dark Zone",
+    "vendor": "DZ 5th Ave, Dark Zone",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -866,7 +866,7 @@
   {
     "type": "gear",
     "name": "Reckless Chest",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ East 58th, Dark Zone Gear",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -884,7 +884,7 @@
   {
     "type": "gear",
     "name": "Reckless Chest",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -902,7 +902,7 @@
   {
     "type": "gear",
     "name": "Robust Chest",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 42nd, Dark Zone",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -920,7 +920,7 @@
   {
     "type": "gear",
     "name": "Robust Chest",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ08 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -938,7 +938,7 @@
   {
     "type": "gear",
     "name": "Vigorous Chest",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -956,7 +956,7 @@
   {
     "type": "gear",
     "name": "Vigorous Chest",
-    "vendor": "Gear",
+    "vendor": "Madison's Stand, Gear",
     "price": "$0",
     "category": "chest",
     "rarity": "",
@@ -974,7 +974,7 @@
   {
     "type": "gear",
     "name": "Enduring Mask",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 46th, Dark Zone",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -992,7 +992,7 @@
   {
     "type": "gear",
     "name": "Rehabilitated Mask",
-    "vendor": "Gear",
+    "vendor": "Autumn's Hope, Gear",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1010,7 +1010,7 @@
   {
     "type": "gear",
     "name": "Rehabilitated Mask",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 31st, Dark Zone",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1028,7 +1028,7 @@
   {
     "type": "gear",
     "name": "Rehabilitated Mask",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1046,7 +1046,7 @@
   {
     "type": "gear",
     "name": "Rehabilitated Mask",
-    "vendor": "Gear",
+    "vendor": "The Ward, Gear",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1064,7 +1064,7 @@
   {
     "type": "gear",
     "name": "Rejuvenated Mask",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1082,7 +1082,7 @@
   {
     "type": "gear",
     "name": "Rejuvenated Mask",
-    "vendor": "Gear",
+    "vendor": "Dante's Run, Gear",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1100,7 +1100,7 @@
   {
     "type": "gear",
     "name": "Rejuvenated Mask",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ East 58th, Dark Zone Gear",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1118,7 +1118,7 @@
   {
     "type": "gear",
     "name": "Rejuvenated Mask",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ08 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1136,7 +1136,7 @@
   {
     "type": "gear",
     "name": "Tenacious Mask",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ02 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "mask",
     "rarity": "",
@@ -1154,7 +1154,7 @@
   {
     "type": "gear",
     "name": "Accomplished Knee Pads",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 31st, Dark Zone",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1172,7 +1172,7 @@
   {
     "type": "gear",
     "name": "Accomplished Knee Pads",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 39th, Dark Zone",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1190,7 +1190,7 @@
   {
     "type": "gear",
     "name": "Accomplished Knee Pads",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 42nd, Dark Zone",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1208,7 +1208,7 @@
   {
     "type": "gear",
     "name": "Accomplished Knee Pads",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 53rd, Dark Zone",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1226,7 +1226,7 @@
   {
     "type": "gear",
     "name": "Accomplished Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1244,7 +1244,7 @@
   {
     "type": "gear",
     "name": "Prosperous Knee Pads",
-    "vendor": "Dark Zone",
+    "vendor": "Base of Operations, Dark Zone",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1262,7 +1262,7 @@
   {
     "type": "gear",
     "name": "Prosperous Knee Pads",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1280,7 +1280,7 @@
   {
     "type": "gear",
     "name": "Prosperous Knee Pads",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ East 58th, Dark Zone Gear",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1298,7 +1298,7 @@
   {
     "type": "gear",
     "name": "Prosperous Knee Pads",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ02 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1316,7 +1316,7 @@
   {
     "type": "gear",
     "name": "Prosperous Knee Pads",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ08 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "kneepads",
     "rarity": "",
@@ -1334,7 +1334,7 @@
   {
     "type": "gear",
     "name": "Inventive Backpack",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 40th, Dark Zone",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1352,7 +1352,7 @@
   {
     "type": "gear",
     "name": "Inventive Backpack",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1370,7 +1370,7 @@
   {
     "type": "gear",
     "name": "Specialized Backpack",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1388,7 +1388,7 @@
   {
     "type": "gear",
     "name": "Specialized Backpack",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ East 58th, Dark Zone Gear",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1406,7 +1406,7 @@
   {
     "type": "gear",
     "name": "Technical Backpack",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 53rd, Dark Zone",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1424,7 +1424,7 @@
   {
     "type": "gear",
     "name": "Technical Backpack",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ02 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1442,7 +1442,7 @@
   {
     "type": "gear",
     "name": "Technical Backpack",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ08 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1460,7 +1460,7 @@
   {
     "type": "gear",
     "name": "Technical Backpack",
-    "vendor": "Gear",
+    "vendor": "The Firewall, Gear",
     "price": "$0",
     "category": "backpack",
     "rarity": "",
@@ -1478,7 +1478,7 @@
   {
     "type": "gear",
     "name": "Astute Gloves",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ East 58th, Dark Zone Gear",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1496,7 +1496,7 @@
   {
     "type": "gear",
     "name": "Astute Gloves",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1514,7 +1514,7 @@
   {
     "type": "gear",
     "name": "Cunning Gloves",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ08 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1532,7 +1532,7 @@
   {
     "type": "gear",
     "name": "Decisive Gloves",
-    "vendor": "Gear",
+    "vendor": "Base of Operations, Gear",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1550,7 +1550,7 @@
   {
     "type": "gear",
     "name": "Decisive Gloves",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1568,7 +1568,7 @@
   {
     "type": "gear",
     "name": "Decisive Gloves",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ02 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1586,7 +1586,7 @@
   {
     "type": "gear",
     "name": "Savage Gloves",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 34th, Dark Zone",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1604,7 +1604,7 @@
   {
     "type": "gear",
     "name": "Savage Gloves",
-    "vendor": "Gear",
+    "vendor": "Southpaw, Gear",
     "price": "$0",
     "category": "gloves",
     "rarity": "",
@@ -1622,7 +1622,7 @@
   {
     "type": "gear",
     "name": "Nimble Holster",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1640,7 +1640,7 @@
   {
     "type": "gear",
     "name": "Nimble Holster",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 46th, Dark Zone",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1658,7 +1658,7 @@
   {
     "type": "gear",
     "name": "Recovered Holster",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ East 58th, Dark Zone Gear",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1676,7 +1676,7 @@
   {
     "type": "gear",
     "name": "Recovered Holster",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ02 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1694,7 +1694,7 @@
   {
     "type": "gear",
     "name": "Recovered Holster",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1712,7 +1712,7 @@
   {
     "type": "gear",
     "name": "Steadfast Holster",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 34th, Dark Zone",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1730,7 +1730,7 @@
   {
     "type": "gear",
     "name": "Steadfast Holster",
-    "vendor": "Dark Zone Gear",
+    "vendor": "DZ08 Safe Room, Dark Zone Gear",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1748,7 +1748,7 @@
   {
     "type": "gear",
     "name": "Sturdy Holster",
-    "vendor": "Gear",
+    "vendor": "Camp Hudson, Gear",
     "price": "$0",
     "category": "holster",
     "rarity": "",
@@ -1766,7 +1766,7 @@
   {
     "type": "gear",
     "name": "Sturdy Holster",
-    "vendor": "Gear",
+    "vendor": "The Cavern, Gear",
     "price": "$0",
     "category": "holster",
     "rarity": "",

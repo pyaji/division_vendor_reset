@@ -2,7 +2,7 @@
   {
     "type": "purple-mod",
     "name": "Critical Hit Chance",
-    "vendor": "Dark Zone Gear Mod",
+    "vendor": "DZ04 Safe Room, Dark Zone Gear Mod",
     "price": "$0",
     "stat": "245",
     "attribute": "1 Critical Hit Chance",
@@ -14,7 +14,7 @@
   {
     "type": "purple-mod",
     "name": "Exotic Damage Resilience",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 42nd, Dark Zone",
     "price": "$0",
     "stat": "249",
     "attribute": "2.5 Exotic Damage Resilience",
@@ -26,7 +26,7 @@
   {
     "type": "purple-mod",
     "name": "Exotic Damage Resilience",
-    "vendor": "Gear",
+    "vendor": "Madison's Stand, Gear",
     "price": "$0",
     "stat": "239",
     "attribute": "2.5 Exotic Damage Resilience",
@@ -38,7 +38,7 @@
   {
     "type": "purple-mod",
     "name": "Health",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "stat": "235",
     "attribute": "3,048 Health",
@@ -50,7 +50,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Power",
-    "vendor": "Dark Zone Gear Mod",
+    "vendor": "DZ East 64th, Dark Zone Gear Mod",
     "price": "$0",
     "stat": "247",
     "attribute": "3,078 Skill Power",
@@ -62,7 +62,7 @@
   {
     "type": "purple-mod",
     "name": "All Resistance",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 53rd, Dark Zone",
     "price": "$0",
     "stat": "253",
     "attribute": "2 All Resistance",
@@ -74,7 +74,7 @@
   {
     "type": "purple-mod",
     "name": "Signature Resource Gain",
-    "vendor": "Gear",
+    "vendor": "Autumn's Hope, Gear",
     "price": "$0",
     "stat": "228",
     "attribute": "3 Signature Resource Gain",
@@ -86,7 +86,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Haste",
-    "vendor": "Gear",
+    "vendor": "Dante's Run, Gear",
     "price": "$0",
     "stat": "262",
     "attribute": "3 Skill Haste",
@@ -98,7 +98,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Haste",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 34th, Dark Zone",
     "price": "$0",
     "stat": "248",
     "attribute": "3 Skill Haste",
@@ -110,7 +110,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Haste",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 39th, Dark Zone",
     "price": "$0",
     "stat": "237",
     "attribute": "3 Skill Haste",
@@ -122,7 +122,7 @@
   {
     "type": "purple-mod",
     "name": "All Resistance",
-    "vendor": "Dark Zone",
+    "vendor": "DZ 5th Ave, Dark Zone",
     "price": "$0",
     "stat": "256",
     "attribute": "2 All Resistance",
@@ -134,7 +134,7 @@
   {
     "type": "purple-mod",
     "name": "All Resistance",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 40th, Dark Zone",
     "price": "$0",
     "stat": "252",
     "attribute": "2 All Resistance",
@@ -146,7 +146,7 @@
   {
     "type": "purple-mod",
     "name": "All Resistance",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "stat": "244",
     "attribute": "2 All Resistance",
@@ -158,7 +158,7 @@
   {
     "type": "purple-mod",
     "name": "Critical Hit Chance",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 42nd, Dark Zone",
     "price": "$0",
     "stat": "238",
     "attribute": "1 Critical Hit Chance",
@@ -170,7 +170,7 @@
   {
     "type": "purple-mod",
     "name": "Critical Hit Chance",
-    "vendor": "Gear",
+    "vendor": "The Cavern, Gear",
     "price": "$0",
     "stat": "232",
     "attribute": "1 Critical Hit Chance",
@@ -182,7 +182,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Haste",
-    "vendor": "Gear",
+    "vendor": "Camp Hudson, Gear",
     "price": "$0",
     "stat": "249",
     "attribute": "3 Skill Haste",
@@ -194,7 +194,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Haste",
-    "vendor": "Gear",
+    "vendor": "Southpaw, Gear",
     "price": "$0",
     "stat": "231",
     "attribute": "3 Skill Haste",
@@ -206,7 +206,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Power",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 31st, Dark Zone",
     "price": "$0",
     "stat": "236",
     "attribute": "3,171 Skill Power",
@@ -218,7 +218,7 @@
   {
     "type": "purple-mod",
     "name": "Skill Power",
-    "vendor": "Gear",
+    "vendor": "The Ward, Gear",
     "price": "$0",
     "stat": "257",
     "attribute": "3,143 Skill Power",
@@ -230,7 +230,7 @@
   {
     "type": "purple-mod",
     "name": "Ballistic Shield Health",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 46th, Dark Zone",
     "price": "$0",
     "stat": "-",
     "attribute": "7.5 Ballistic Shield Health",
@@ -242,7 +242,7 @@
   {
     "type": "purple-mod",
     "name": "First Aid Ally Heal",
-    "vendor": "Special Equipment",
+    "vendor": "Camp Clinton, Special Equipment",
     "price": "$0",
     "stat": "-",
     "attribute": "5 First Aid Ally Heal",
@@ -254,7 +254,7 @@
   {
     "type": "purple-mod",
     "name": "First Aid Self Heal",
-    "vendor": "Dark Zone",
+    "vendor": "DZ East 34th, Dark Zone",
     "price": "$0",
     "stat": "-",
     "attribute": "5.5 First Aid Self Heal",
@@ -266,7 +266,7 @@
   {
     "type": "purple-mod",
     "name": "Mobile Cover Damage Resilience",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 53rd, Dark Zone",
     "price": "$0",
     "stat": "-",
     "attribute": "3.5 Mobile Cover Damage Resilience",
@@ -278,7 +278,7 @@
   {
     "type": "purple-mod",
     "name": "Mobile Cover Damage Resilience",
-    "vendor": "Special Equipment",
+    "vendor": "The Terminal, Special Equipment",
     "price": "$0",
     "stat": "-",
     "attribute": "3.5 Mobile Cover Damage Resilience",
@@ -290,7 +290,7 @@
   {
     "type": "purple-mod",
     "name": "Pulse Critical Hit Damage",
-    "vendor": "Dark Zone Gear Mod",
+    "vendor": "DZ East 64th, Dark Zone Gear Mod",
     "price": "$0",
     "stat": "-",
     "attribute": "1.5 Pulse Critical Hit Damage",
@@ -302,7 +302,7 @@
   {
     "type": "purple-mod",
     "name": "Seeker Mine Explosion Radius",
-    "vendor": "Gear",
+    "vendor": "Base of Operations, Gear",
     "price": "$0",
     "stat": "-",
     "attribute": "7 Seeker Mine Explosion Radius",
@@ -314,7 +314,7 @@
   {
     "type": "purple-mod",
     "name": "Smart Cover Duration",
-    "vendor": "Gear",
+    "vendor": "The Firewall, Gear",
     "price": "$0",
     "stat": "-",
     "attribute": "4.5 Smart Cover Duration",
@@ -326,7 +326,7 @@
   {
     "type": "purple-mod",
     "name": "Sticky Bomb Damage",
-    "vendor": "Dark Zone Gear Mod",
+    "vendor": "DZ04 Safe Room, Dark Zone Gear Mod",
     "price": "$0",
     "stat": "-",
     "attribute": "4 Sticky Bomb Damage",
@@ -338,7 +338,7 @@
   {
     "type": "purple-mod",
     "name": "Support Station Healing Speed",
-    "vendor": "Dark Zone",
+    "vendor": "Base of Operations, Dark Zone",
     "price": "$0",
     "stat": "-",
     "attribute": "4.5 Support Station Healing Speed",
@@ -350,7 +350,7 @@
   {
     "type": "purple-mod",
     "name": "Turret Health",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 46th, Dark Zone",
     "price": "$0",
     "stat": "-",
     "attribute": "7 Turret Health",
@@ -362,7 +362,7 @@
   {
     "type": "purple-mod",
     "name": "Turret Health",
-    "vendor": "Dark Zone",
+    "vendor": "DZ West 31st, Dark Zone",
     "price": "$0",
     "stat": "-",
     "attribute": "6.5 Turret Health",
@@ -374,7 +374,7 @@
   {
     "type": "gear-mod",
     "name": "Bleed Resistance",
-    "vendor": "Gear",
+    "vendor": "The Firewall, Gear",
     "price": "$0",
     "stat": "199",
     "attribute": "4 Bleed Resistance",
@@ -386,7 +386,7 @@
   {
     "type": "gear-mod",
     "name": "Disrupt Resistance",
-    "vendor": "Gear",
+    "vendor": "Camp Hudson, Gear",
     "price": "$0",
     "stat": "197",
     "attribute": "4 Disrupt Resistance",
@@ -398,7 +398,7 @@
   {
     "type": "gear-mod",
     "name": "Ammo Capacity",
-    "vendor": "Gear",
+    "vendor": "Southpaw, Gear",
     "price": "$0",
     "stat": "200",
     "attribute": "10 Ammo Capacity",
@@ -410,7 +410,7 @@
   {
     "type": "gear-mod",
     "name": "Ammo Capacity",
-    "vendor": "Gear",
+    "vendor": "The Ward, Gear",
     "price": "$0",
     "stat": "183",
     "attribute": "10 Ammo Capacity",
@@ -422,7 +422,7 @@
   {
     "type": "gear-mod",
     "name": "Damage to Elites",
-    "vendor": "Gear",
+    "vendor": "Base of Operations, Gear",
     "price": "$0",
     "stat": "194",
     "attribute": "4 Damage to Elites",
@@ -434,7 +434,7 @@
   {
     "type": "gear-mod",
     "name": "Damage to Elites",
-    "vendor": "Gear",
+    "vendor": "Madison's Stand, Gear",
     "price": "$0",
     "stat": "205",
     "attribute": "3 Damage to Elites",
@@ -446,7 +446,7 @@
   {
     "type": "gear-mod",
     "name": "Disorient Resistance",
-    "vendor": "Gear",
+    "vendor": "Dante's Run, Gear",
     "price": "$0",
     "stat": "186",
     "attribute": "3 Disorient Resistance",
@@ -458,7 +458,7 @@
   {
     "type": "gear-mod",
     "name": "Bleed Resistance",
-    "vendor": "Gear",
+    "vendor": "Autumn's Hope, Gear",
     "price": "$0",
     "stat": "195",
     "attribute": "4 Bleed Resistance",
@@ -470,7 +470,7 @@
   {
     "type": "gear-mod",
     "name": "Blind/Deaf Resitance",
-    "vendor": "Gear",
+    "vendor": "The Cavern, Gear",
     "price": "$0",
     "stat": "197",
     "attribute": "3 Blind/Deaf Resitance",

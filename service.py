@@ -62,7 +62,9 @@ DATA_DIR = os.path.join(ROOT, 'data')
 META_FILE = os.path.join(DATA_DIR, 'meta.json')
 WEEK_SECONDS = 7 * 24 * 3600
 FAIL_RETRY_SECONDS = 15 * 60
-HTTP_TIMEOUT = 30
+HTTP_TIMEOUT = 60          # published-страница листа весит сотни КБ — 30 с иногда мало
+HTTP_ATTEMPTS = 3          # повторы на транзиентные таймауты Google
+HTTP_RETRY_DELAY = 5
 DEFAULT_PORT = 8090
 USER_AGENT = 'd1-vendor-reset-data-service/1.0'
 SKIP_SHEETS = {'blueprints'}  # not used by the front end — not synced
@@ -101,11 +103,22 @@ def utcnow_iso():
 
 
 def http_get(url):
-    req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
-    with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
-        if resp.status != 200:
-            raise IOError(f'HTTP {resp.status} for {url}')
-        return resp.read().decode('utf-8', 'replace')
+    """GET с повторами: у Google published-страницы изредка отваливаются по read timeout."""
+    last = None
+    for attempt in range(1, HTTP_ATTEMPTS + 1):
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
+            with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
+                if resp.status != 200:
+                    raise IOError(f'HTTP {resp.status} for {url}')
+                return resp.read().decode('utf-8', 'replace')
+        except Exception as e:  # noqa: BLE001 — сеть/таймаут/HTTP-код: пробуем ещё
+            last = e
+            if attempt < HTTP_ATTEMPTS:
+                log.warning('%s: %s — попытка %d/%d, повтор через %d с',
+                            url, e, attempt, HTTP_ATTEMPTS, HTTP_RETRY_DELAY)
+                time.sleep(HTTP_RETRY_DELAY)
+    raise last
 
 
 # ---------------------------------------------------------------- HTML table
@@ -370,6 +383,11 @@ def _category(r, table, exotics=False):
         key = EXOTIC_CLASSES.get((r.get('name') or '').strip().lower())
     return key or ''
 
+def _vendor(r):
+    """На карточке в поле vendor показываем "Location, Vendor" — в листе это две колонки."""
+    parts = [x.strip() for x in (r.get('location') or '', r.get('vendor') or '') if x.strip()]
+    return ', '.join(parts)
+
 def _raw_refs(r):
     d = {'_row': r.get('_row'), '_top': r.get('_top'), '_section': r.get('_section')}
     d['recommended'] = 'Yes' if r.get('_recommended') else ''
@@ -415,7 +433,7 @@ def adapt_weapons(rows):
         it = {
             'type': 'exotic' if r.get('_top') == 'Exotic' else 'weapon',
             'name': r.get('name') or '',
-            'vendor': r.get('vendor') or '',
+            'vendor': _vendor(r),
             'price': '$0',
             'category': _category(r, WEAPON_CLASSES, exotics=True),  # класс для иконки
             'bonus': '-', 'dmg': '', 'rpm': '', 'mag': '',
@@ -437,7 +455,7 @@ def adapt_gear(rows):
             'type': 'gear',
             # в имени дописываем слот: "D3-FNC" -> "D3-FNC Chest"
             'name': ' '.join(x for x in (r.get('name') or '', slot) if x),
-            'vendor': r.get('vendor') or '',
+            'vendor': _vendor(r),
             'price': '$0',
             'category': _category(r, GEAR_SLOTS),          # слот для иконки (.gear-icon.*)
             'rarity': GEAR_SET_RARITY if r.get('_top') == 'Gear Set' else '',
@@ -456,7 +474,7 @@ def adapt_weapon_mods(rows):
         it = {
             'type': 'weapon-mod',
             'name': r.get('name') or '',
-            'vendor': r.get('vendor') or '',
+            'vendor': _vendor(r),
             'price': '$0',
             'category': _category(r, MOD_CLASSES),   # иконка мода
             'attributes': _pair_lines(r) or '-',
@@ -472,7 +490,7 @@ def adapt_gear_mods(rows):
         it = {
             'type': 'purple-mod' if r.get('_top') == 'High End' else 'gear-mod',
             'name': attr or r.get('type') or '?',  # в листе нет колонки name
-            'vendor': r.get('vendor') or '',
+            'vendor': _vendor(r),
             'price': '$0',
             'stat': r.get('stat_value') or '-',    # напр. "245"; у performance-модов "-"
             'attribute': f'{r["c3"]} {attr}'.strip() if (r.get('c3') and attr) else attr,
@@ -716,7 +734,7 @@ def main():
     ap = argparse.ArgumentParser(description='D1 vendor reset data service')
     ap.add_argument('--sync-only', action='store_true', help='sync once and exit')
     ap.add_argument('--port', type=int, default=DEFAULT_PORT)
-    ap.add_argument('--host', default='127.0.0.1')
+    ap.add_argument('--host', default='0.0.0.0')
     ap.add_argument('--interval', type=int, default=WEEK_SECONDS,
                     help='sync period in seconds (default: 604800 = 1 week)')
     args = ap.parse_args()
