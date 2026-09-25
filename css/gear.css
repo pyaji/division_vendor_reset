@@ -5,27 +5,27 @@
     background-size: 156px;
 }
 .gear-icon.holster {
-    background-image: url(/divn/images/items/holster.png)
+    background-image: url(/images/items/holster.png)
 }
 .gear-icon.chest {
-    background-image: url(/divn/images/items/chest.png)
+    background-image: url(/images/items/chest.png)
 }
 .gear-icon.mask {
-    background-image: url(/divn/images/items/mask.png)
+    background-image: url(/images/items/mask.png)
 }
 .gear-icon.kneepads {
-    background-image: url(/divn/images/items/kneepads.png)
+    background-image: url(/images/items/kneepads.png)
 }
 .gear-icon.backpack {
-    background-image: url(/divn/images/items/backpack.png)
+    background-image: url(/images/items/backpack.png)
 }
 .gear-icon.gloves {
-    background-image: url(/divn/images/items/gloves.png)
+    background-image: url(/images/items/gloves.png)
 }
 
 /*
 .gear-icon {
-    background-image: url(/divn/images/items2.png);
+    background-image: url(/images/items2.png);
     width: 80px;
     height: 80px;
     background-size: 620px;
@@ -60,7 +60,7 @@
     right: -2px;
     float: right;
     border-radius: 3px;
-    background-image: url(/divn/images/sets.png);
+    background-image: url(/images/sets.png);
     background-size: 630px;
     opacity: 0.5;
     background-position: 0px 0px;
@@ -110,7 +110,7 @@
 }
 
 .icon-stat {
-    background-image: url(/divn/images/stats.png);
+    background-image: url(/images/stats.png);
     width: 1.2em;
     height: 1.2em;
     display: inline-block;

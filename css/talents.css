@@ -1,5 +1,5 @@
 .talent {
-    background-image: url(/divn/images/talents.png);
+    background-image: url(/images/talents.png);
     background-position: 0px 0px;
     width: 80px;
     height: 80px;
@@ -130,7 +130,7 @@
 	background-position: 0px -406px;
 }
 .talent.historyrepeats {
-    background-image: url(/divn/images/talents2.png);
+    background-image: url(/images/talents2.png);
     background-position: -245px 0px;
 }
 .talent.boomstick {

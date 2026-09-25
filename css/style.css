@@ -223,7 +223,7 @@
 }
 
 .icon .weapon-type, .icon .gear-item, .weapon-mod-icon {
-    background-image: url(/divn/images/items.png);
+    background-image: url(/images/items.png);
     width: 80px;
     height: 80px;
     background-size: 603px;
@@ -273,16 +273,16 @@
     height: 1.2em;
     display: inline-block;
     vertical-align: middle;
-    background-image: url(/divn/images/items.png);
+    background-image: url(/images/items.png);
     background-size: 150px;
     background-position: 0px -77px;
 }
 .icon-cur.dz {
-    background-image: url(/divn/images/items.png);
+    background-image: url(/images/items.png);
     background-position: -19px -77px;
 }
 .icon-cur.pxc {
-    background-image: url(/divn/images/items2.png);
+    background-image: url(/images/items2.png);
     background-position: 73px 0px;
 }
 .item .price.dz {
