@@ -13,12 +13,20 @@
 **Запуск (один процесс — и данные, и страница):**
 ```
 .venv/bin/python service.py            # sync + HTTP-сервер :8090, повторный sync каждые 7 дней
+.venv/bin/python service.py --no-sync   # только сервер, без sync-тредов (уже есть data/*.json)
 .venv/bin/python service.py --sync-only# только sync (без сервера)
 # страница:  http://127.0.0.1:8090/divn/index.html     (или /divn/ -> index.html)
 # JSON API:  /  /status  /data/<slug>.json  /data/raw/<slug>.json  POST /sync
 ```
 Статика отдаётся **под префиксом `/divn/`**, потому что ассеты в CSS прописаны абсолютно (`/divn/css/...`, `/divn/fonts/...` — HARD RULE §4.7); префикс менять нельзя. Страница грузит данные относительным `fetch('data/...')` → попадает в `/divn/data/*.json` (те же файлы, что и JSON API).
 `demo-server.js` — прежний отдельный статик-сервер (`:8791`), **больше не нужен**: его роль выполняет `service.py`. Файл оставлен как запасной вариант.
+
+**Production (uwsgi + nginx, `configs/`):**
+```
+uwsgi --ini configs/uwsgi.ini           # WSGI: service.app, http-слушатель 127.0.0.1:8090 (только для nginx, не наружу)
+nginx -c configs/nginx.division1.conf   # /divn/ → статика прямо с диска; /data/ /status /sync / → прокси на 127.0.0.1:8090
+```
+Особенности: под uwsgi `service.app` — та же маршрутизация, что и у HTTP-сервера (`route()`); еженедельный sync-тред **не стартует сам при boot** — первый `POST /sync` его запускает (в ini есть закомментированный `start-sync = true` для автозапуска). `POST /sync` теперь **неблокирующий**: сразу `202` (sync в фоновом треде), `409`, пока sync в полёте, `503`, если syncer не создан (`--no-sync`). Один процесс uwsgi — sync однопоточный, конкурентных снов быть не должно. Статика от nginx не зависит от живости uwsgi — фронт работает даже если uwsgi упал.
 
 ## 2. Технологический стек
 
@@ -41,7 +49,9 @@ js/gear.vue         # Компонент Gear
 js/gear-mod.vue     # Компонент GearMod
 js/vendor-item.vue  # Vue.component('vendor-item', ...) — обёртка: маппит item.type → внутренний компонент
 js/vue.js, axios.min.js, lodash.min.js  # vendor'нутые библиотеки
-service.py          # Python-сервис (stdlib-only): sync Google Sheet → data/*.json (+ raw/), HTTP: JSON API + статика страницы под /divn/, порт 8090
+service.py          # Python-сервис (stdlib-only): sync Google Sheet → data/*.json (+ raw/); ДВА интерфейса: HTTP-сервер :8090 (http.server) и WSGI app() для uwsgi; JSON API + статика страницы под /divn/
+configs/uwsgi.ini   # production WSGI: module=service, callable=app, http 127.0.0.1:8090, master+1 процесс (sync однопоточный); systemd-пример в заголовке
+configs/nginx.division1.conf  # production nginx: /divn/ → статика с диска (no-cache html/json, 7d ассеты), JSON API → прокси на uwsgi
 demo-server.js      # ПРЕЖНИЙ статик-сервер (/divn/* → корень проекта, :8791) — заменён service.py, оставлен как запасной
 .venv/              # Python 3.12.2, ТОЛЬКО pip (без requests/bs4) — сервис работает на stdlib
 data/*.json         # ГЕНЕРИРУЕМЫЕ service.py (weapons / weapon-mods / gear / gear-mods / welcome / meta.json) — руками не править
@@ -138,11 +148,12 @@ tools/              # проверки: smoke_page.js (логика компон
 Grid `.container` в `css/style.css`: 5 колонок → 4 → 3 → 2 → 1 по breakpoint'ам 1849/1479/1109/739px. Карточка `.item` — фиксированная 3-колоночная grid с `grid-template-areas`.
 
 ### 4.11 Сервис `service.py` — правила
-- Stdlib-only (`.venv` пустой: только pip). Запуск: `.venv/bin/python service.py [--port 8090] [--interval сек] | --sync-only`.
+- Stdlib-only (`.venv` пустой: только pip). Запуск: `.venv/bin/python service.py [--port 8090] [--interval сек] [--no-sync] | --sync-only`.
 - **Где запускать долгоживущий инстанс**: команды агента выполняются в bwrap-песочнице (`--die-with-parent`, отдельный PID-namespace), поэтому всё, что стартует внутри сессии, снимается SIGKILL вместе с песочницей, а чужие процессы из неё даже не видны. Для постоянной работы сервис запускать **в обычном терминале пользователя**; короткие проверки (`.work`/`tools`) — из сессии агента.
 - Cycle: sync on start, затем раз в `--interval` (по умолчанию 604800 сек = неделя); при сбое sync — retry раз в 15 минут, старые `data/*.json` сохраняются (write атомарный: `.tmp` + `os.replace`). Скачивание листов идёт с повторами (`http_get`: 60 с таймаут, 3 попытки с паузой 5 с) — published-страницы Google изредка отваливаются по read timeout.
-- API: `GET /` (JSON index, поле `app` = путь к странице), `GET /status` (meta + `next_sync_at`), `GET /data/<slug>.json` (item-модель), `GET /data/raw/<slug>.json` (честный dump), `POST /sync`.
+- API: `GET /` (JSON index, поле `app` = путь к странице), `GET /status` (meta + `next_sync_at`), `GET /data/<slug>.json` (item-модель), `GET /data/raw/<slug>.json` (честный dump), `POST /sync` (`**202**` — sync в фоновом треде; `**409**`, пока sync в полёте; `**503**`, если syncer не создан, напр. `--no-sync`).
 - **Статика и страница — тем же процессом**: `GET /divn/` (→ `index.html`), `GET /divn/<path>` — любой файл проекта, кроме dot-каталогов (`.git`, `.venv`, `.work`, `.codegraph`) и собственных исходников сервиса (`service.py`, `demo-server.js`); `GET /divn` → 301 на `/divn/`; есть `HEAD`. Обход каталога (`/divn/../`, `%2e%2e`) блокируется (403/404). MIME по расширению (`.vue` отдаётся как `application/javascript`, файлы без расширения — `text/plain`), для `.html`/`.json` — `Cache-Control: no-cache` (данные обновляются раз в неделю).
+- **WSGI / production**: модуль экспортирует `app(environ, start_response)` (общая с http.server маршрутизация `route(method, raw_path)`, HEAD без тела). Деплой: `uwsgi --ini configs/uwsgi.ini` + `nginx -c configs/nginx.division1.conf` (nginx отдаёт `/divn/` прямо с диска, JSON API проксирует на uwsgi). Под uwsgi sync **не стартует при boot** — запускается первым `POST /sync` (или `start-sync = true` в ini, по умолчанию закомментирован). uwsgi — **системный пакет** (не в `.venv`, §6): `virtualenv =` в ini лишь указывает uwsgi на stdlib-venv.
 - Парсинг: `html.parser` (не bs4) по статичным subpage-листам `{SOURCE}/sheet?headers=false&gid={gid}`; список листов (name→gid) парсится из pubhtml-страницы regex'ом `name: "..." ... gid: "..."`.
 - Section-логика: строка = секция, если ровно одна непустая ячейка и её CSS-стиль — не "note" (border/vertical-align); top-секция = чёрный фон. Если в листе черных нет — каждая секция считается top (`_top` = `_section`). «Рекомендовано» = оранжевый фон `#ffbb7f` (сравнение по цвету, не по номеру класса). Всё это завязано на CSS published-страницы: если владелец листа перестилизует таблицу — прогнать `--sync-only` и сверить секции/`_recommended` с `data/raw/*.json`.
 - `data/*.json` — артефакты sync'а: не править руками, не коммитить изменения от руки; при необходимости пересчитать — `POST /sync` или `--sync-only`.
@@ -170,5 +181,5 @@ Grid `.container` в `css/style.css`: 5 колонок → 4 → 3 → 2 → 1 �
 - Не нарушать порядок `<script>` в `index.html`.
 - Не переключать `url` на внешние источники — первоисточник мёртв; страница берёт `data/*.json` (их генерирует `service.py`).
 - Не править `data/*.json` руками и не увеличивать частоту sync'а выше раза в неделю (волонтёрские данные, на листе anti-scraping заметка).
-- Не ставить зависимости в `.venv` без необходимости: `service.py` осознанно stdlib-only.
+- Не ставить зависимости в `.venv` без необходимости: `service.py` осознанно stdlib-only. Production WSGI использует **системный** uwsgi (distro-пакет), а не пакет из `.venv`; `virtualenv =` в `configs/uwsgi.ini` лишь указывает ему на stdlib-venv.
 - Не переписывать ES5-стиль (`var`, callbacks) в ES6/модули точечно — без смены всего конвейера это только усложнит diff.

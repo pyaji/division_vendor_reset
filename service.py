@@ -9,16 +9,22 @@ directly in .venv.
 
     .venv/bin/python service.py                 # sync now + serve on :8090, re-sync every week
     .venv/bin/python service.py --sync-only     # one-off sync, no server
+    .venv/bin/python service.py --no-sync       # serve the existing data/*.json only
     .venv/bin/python service.py --port 9000 --interval 604800
 
-HTTP:
+Production (production-grade: nginx + uwsgi, configs/ in the repo):
+    uwsgi --ini configs/uwsgi.ini      # service.app as WSGI, sync weekly in the background
+    nginx -t -c configs/nginx.division1.conf && service nginx restart
+
+HTTP (same routes on the stdlib server and on the WSGI interface):
     GET  /divn/index.html   front end (css/js/images/fonts/fetch('data/...') are relative to it)
     GET  /divn/<path>       any project file except dot-dirs and the service's own sources
     GET  /                  JSON index of the endpoints below
     GET  /status            sync state + per-sheet rows
     GET  /data/<name>.json  page item model per sheet (+ meta)
     GET  /data/raw/<name>.json  sheet-native dump
-    POST /sync              force re-sync
+    POST /sync              start a re-sync in the background and return 202
+                             (409 while a sync is in flight)
 
 The front end lives under /divn/ because css/*.css reference assets with the
 absolute /divn/ prefix (deployment path) — see AI_CONTEXT §4.7.
@@ -96,6 +102,11 @@ MIME_TYPES = {
 NO_CACHE_SUFFIXES = ('.html', '.json')  # data refreshes weekly — never serve stale
 
 log = logging.getLogger('d1sync')
+
+# Module-level service state: one set for both the stdlib server and the WSGI
+# app (under uwsgi it is set by start_sync on import, in plain Python by main).
+syncer = None          # Syncer instance
+interval = WEEK_SECONDS
 
 
 def utcnow_iso():
@@ -511,6 +522,7 @@ ADAPTERS = {
 class Syncer:
     def __init__(self):
         self.lock = threading.Lock()
+        self.sync_in_flight = False   # guard for POST /sync (409 while a sync is running)
         self.started_at = utcnow_iso()
         self.last_sync_at = None
         self.last_sync_error = None
@@ -526,6 +538,13 @@ class Syncer:
 
     def sync(self):
         """Fetch all sheets and rewrite data/*.json + meta.json. Raises on failure."""
+        self.sync_in_flight = True
+        try:
+            return self._sync_locked()
+        finally:
+            self.sync_in_flight = False
+
+    def _sync_locked(self):
         with self.lock:
             os.makedirs(DATA_DIR, exist_ok=True)
             sheets_meta, welcome_update = {}, None
@@ -619,120 +638,177 @@ class Syncer:
 
 
 # --------------------------------------------------------------------- http
+# One routing function feeds both the stdlib server (Handler) and the WSGI app
+# (uwsgi/nginx) — same routes, same responses.
+
+def route(method, raw_path):
+    """Route a request; returns {'status': int, 'headers': [(k, v)...], 'body': bytes}."""
+    if method == 'POST':
+        path = raw_path.split('?', 1)[0].rstrip('/') or '/'
+        if path == '/sync':
+            if syncer is None:
+                return _json_response(503, {'error': 'sync not enabled in this mode'})
+            if syncer.sync_in_flight:
+                return _json_response(409, {'error': 'sync already in flight'})
+            start_sync()
+            return _json_response(202, {'status': 'started',
+                                        'message': 'sync running in the background; poll GET /status'})
+        return _json_response(404, {'error': 'not found'})
+
+    raw_path = raw_path.split('?', 1)[0]
+    path = raw_path.rstrip('/') or '/'
+    if path == '/':
+        return _json_response(200, {
+            'service': 'd1-vendor-reset-data',
+            'app': f'{STATIC_PREFIX}/{INDEX_FILE}',
+            'endpoints': {
+                f'GET  {STATIC_PREFIX}/': 'front end (index.html + css/js/images/fonts + data/)',
+                'GET  /status': 'sync state + per-sheet rows',
+                'GET  /data/<name>.json': 'weapons weapon-mods gear gear-mods welcome meta (+ any <slug>.json in data/)',
+                'GET  /data/raw/<name>.json': 'sheet-native dump (per-block _header etc.)',
+                'POST /sync': 'start a re-sync in the background (202; 409 while in flight)',
+            },
+            'interval_seconds': interval,
+        })
+    if path == '/status':
+        if syncer is None:
+            return _json_response(503, {'error': 'sync not enabled in this mode'})
+        st = syncer.status()
+        st['next_sync_at'] = (datetime.fromtimestamp(time.time() + interval, timezone.utc)
+                               .strftime('%Y-%m-%dT%H:%M:%SZ'))
+        return _json_response(200, st)
+    if path.startswith('/data/'):
+        return _serve_data(path[len('/data/'):])
+    if raw_path == STATIC_PREFIX:  # /divn -> /divn/
+        return {'status': 301,
+                'headers': [('Location', STATIC_PREFIX + '/'), ('Content-Length', '0')],
+                'body': b''}
+    if raw_path.startswith(STATIC_PREFIX + '/'):
+        return _serve_static(raw_path[len(STATIC_PREFIX) + 1:])
+    return _json_response(404, {'error': 'not found', 'app': f'{STATIC_PREFIX}/{INDEX_FILE}'})
+
+
+def _json_response(code, obj):
+    payload = json.dumps(obj, ensure_ascii=False, indent=2).encode('utf-8')
+    return {'status': code,
+            'headers': [('Content-Type', 'application/json; charset=utf-8'),
+                        ('Content-Length', str(len(payload)))],
+            'body': payload}
+
+
+def _serve_data(name):
+    if not re.fullmatch(r'(?:raw/)?[a-z0-9_-]+\.json', name):
+        return _json_response(400, {'error': 'bad name, expected <slug>.json or raw/<slug>.json'})
+    fp = os.path.realpath(os.path.join(DATA_DIR, name))
+    if not fp.startswith(os.path.realpath(DATA_DIR) + os.sep) or not os.path.isfile(fp):
+        return _json_response(404, {'error': f'{name} not available (run POST /sync first)'})
+    return _file_response(fp)
+
+
+def _serve_static(rel):
+    """Отдаёт файлы проекта под /divn/ — страница, css/js/шрифты/картинки и data/."""
+    rel = urllib.parse.unquote(rel)
+    if rel.endswith('/') or rel == '':
+        rel += INDEX_FILE
+    target = os.path.realpath(os.path.join(ROOT, rel))
+    root = os.path.realpath(ROOT)
+    if not target.startswith(root + os.sep):
+        return _json_response(403, {'error': 'forbidden path'})
+    # не отдаём служебное: .git/.venv/.work/.codegraph, собственные скрипты и кэш
+    parts = os.path.relpath(target, root).split(os.sep)
+    if any(p.startswith('.') or p == '__pycache__' for p in parts):
+        return _json_response(404, {'error': 'not found'})
+    if parts[-1] in ('service.py', 'demo-server.js'):
+        return _json_response(404, {'error': 'not found'})
+    if os.path.isdir(target):
+        target = os.path.join(target, INDEX_FILE)
+    if not os.path.isfile(target):
+        return _json_response(404, {'error': f'not found: {rel}', 'app': f'{STATIC_PREFIX}/{INDEX_FILE}'})
+    return _file_response(target)
+
+
+def _file_response(fp):
+    ext = os.path.splitext(fp)[1].lower()
+    # файлы без расширения (css/talentslist) — текстовые, а не бинарь
+    ctype = MIME_TYPES.get(ext) or ('text/plain; charset=utf-8' if not ext else 'application/octet-stream')
+    with open(fp, 'rb') as f:
+        payload = f.read()
+    headers = [('Content-Type', ctype), ('Content-Length', str(len(payload)))]
+    if fp.endswith(NO_CACHE_SUFFIXES):
+        headers.append(('Cache-Control', 'no-cache'))
+    return {'status': 200, 'headers': headers, 'body': payload}
+
 
 class Handler(BaseHTTPRequestHandler):
-    syncer: Syncer = None
-    interval: int = WEEK_SECONDS
+    """Thin adapter of route() onto http.server (local/development run)."""
 
-    def _json(self, code, obj, body=True):
-        payload = json.dumps(obj, ensure_ascii=False, indent=2).encode('utf-8')
-        self.send_response(code)
-        self.send_header('Content-Type', 'application/json; charset=utf-8')
-        self.send_header('Content-Length', str(len(payload)))
+    def _send(self, resp, get_body):
+        self.send_response(resp['status'])
+        for k, v in resp['headers']:
+            self.send_header(k, v)
+        if resp['status'] == 301:
+            self.send_header('Content-Length', '0')
         self.end_headers()
-        if body:
-            self.wfile.write(payload)
+        if get_body and resp['body'] is not None:
+            self.wfile.write(resp['body'])
 
     def do_GET(self):
-        return self._route(get_body=True)
+        return self._send(route('GET', self.path), get_body=True)
 
     def do_HEAD(self):
-        return self._route(get_body=False)
-
-    def _route(self, get_body):
-        raw_path = self.path.split('?', 1)[0]
-        path = raw_path.rstrip('/') or '/'
-        if path in ('/', ''):
-            self._json(200, {
-                'service': 'd1-vendor-reset-data',
-                'app': f'{STATIC_PREFIX}/{INDEX_FILE}',
-                'endpoints': {
-                    f'GET  {STATIC_PREFIX}/': 'front end (index.html + css/js/images/fonts + data/)',
-                    'GET  /status': 'sync state + per-sheet rows',
-                    'GET  /data/<name>.json': 'weapons weapon-mods gear gear-mods welcome meta (+ any <slug>.json in data/)',
-                    'GET  /data/raw/<name>.json': 'sheet-native dump (per-block _header etc.)',
-                    'POST /sync': 'force re-sync now',
-                },
-                'interval_seconds': self.interval,
-            }, body=get_body)
-        elif path == '/status':
-            st = self.syncer.status()
-            st['next_sync_at'] = (datetime.fromtimestamp(time.time() + self.interval, timezone.utc)
-                                  .strftime('%Y-%m-%dT%H:%M:%SZ'))
-            return self._json(200, st, body=get_body)
-        elif path.startswith('/data/'):
-            return self._serve_data(path[len('/data/'):], body=get_body)
-        elif raw_path == STATIC_PREFIX:  # /divn -> /divn/
-            self.send_response(301)
-            self.send_header('Location', STATIC_PREFIX + '/')
-            self.send_header('Content-Length', '0')
-            self.end_headers()
-        elif raw_path.startswith(STATIC_PREFIX + '/'):
-            return self._serve_static(raw_path[len(STATIC_PREFIX) + 1:], body=get_body)
-        else:
-            self._json(404, {'error': 'not found', 'app': f'{STATIC_PREFIX}/{INDEX_FILE}'}, body=get_body)
-
-    def _serve_data(self, name, body=True):
-        if not re.fullmatch(r'(?:raw/)?[a-z0-9_-]+\.json', name):
-            return self._json(400, {'error': 'bad name, expected <slug>.json or raw/<slug>.json'}, body=body)
-        fp = os.path.realpath(os.path.join(DATA_DIR, name))
-        if not fp.startswith(os.path.realpath(DATA_DIR) + os.sep) or not os.path.isfile(fp):
-            return self._json(404, {'error': f'{name} not available (run POST /sync first)'}, body=body)
-        self._send_file(fp, body=body)
-
-    def _serve_static(self, rel, body=True):
-        """Отдаёт файлы проекта под /divn/ — страница, css/js/шрифты/картинки и data/."""
-        rel = urllib.parse.unquote(rel)
-        if rel.endswith('/') or rel == '':
-            rel += INDEX_FILE
-        target = os.path.realpath(os.path.join(ROOT, rel))
-        root = os.path.realpath(ROOT)
-        if not target.startswith(root + os.sep):
-            return self._json(403, {'error': 'forbidden path'}, body=body)
-        # не отдаём служебное: .git/.venv/.work/.codegraph, собственные скрипты и кэш
-        parts = os.path.relpath(target, root).split(os.sep)
-        if any(p.startswith('.') or p == '__pycache__' for p in parts):
-            return self._json(404, {'error': 'not found'}, body=body)
-        if parts[-1] in ('service.py', 'demo-server.js'):
-            return self._json(404, {'error': 'not found'}, body=body)
-        if os.path.isdir(target):
-            target = os.path.join(target, INDEX_FILE)
-        if not os.path.isfile(target):
-            return self._json(404, {'error': f'not found: {rel}', 'app': f'{STATIC_PREFIX}/{INDEX_FILE}'}, body=body)
-        self._send_file(target, body=body)
-
-    def _send_file(self, fp, body=True):
-        ext = os.path.splitext(fp)[1].lower()
-        # файлы без расширения (css/talentslist) — текстовые, а не бинарь
-        ctype = MIME_TYPES.get(ext) or ('text/plain; charset=utf-8' if not ext else 'application/octet-stream')
-        with open(fp, 'rb') as f:
-            payload = f.read()
-        self.send_response(200)
-        self.send_header('Content-Type', ctype)
-        self.send_header('Content-Length', str(len(payload)))
-        if fp.endswith(NO_CACHE_SUFFIXES):
-            self.send_header('Cache-Control', 'no-cache')
-        self.end_headers()
-        if body:
-            self.wfile.write(payload)
+        resp = dict(route('GET', self.path), body=None)
+        return self._send(resp, get_body=False)
 
     def do_POST(self):
-        path = self.path.split('?', 1)[0].rstrip('/') or '/'
-        if path == '/sync':
-            try:
-                self.syncer.sync()
-                return self._json(200, self.syncer.status())
-            except Exception as e:
-                return self._json(502, {'error': f'sync failed: {e}'})
-        self._json(404, {'error': 'not found'})
+        return self._send(route('POST', self.path), get_body=True)
 
     def log_message(self, fmt, *args):  # quieter access log
         log.debug('http %s', fmt % args)
 
 
+# --------------------------------------------------------------- wsgi / uwsgi
+# Production: nginx (configs/nginx.division1.conf) + uwsgi --ini configs/uwsgi.ini.
+# uwsgi loads this module and calls app() per request; the periodic sync runs in a
+# daemon thread started by start_sync() — on the first POST /sync (or main()).
+
+_STATUS_TEXT = {
+    200: 'OK', 202: 'ACCEPTED', 301: 'MOVED PERMANENTLY',
+    400: 'BAD REQUEST', 403: 'FORBIDDEN', 404: 'NOT FOUND', 409: 'CONFLICT',
+    502: 'BAD GATEWAY', 503: 'SERVICE UNAVAILABLE',
+}
+
+def start_sync():
+    """Start the weekly-sync daemon thread once (no-op if a sync is already in flight)."""
+    global syncer, _sync_thread
+    if syncer is None or syncer.sync_in_flight:
+        return
+    _sync_thread = threading.Thread(target=syncer.schedule, args=(interval,), daemon=True)
+    _sync_thread.start()
+
+
+_sync_thread = None
+
+
+def app(environ, start_response):
+    """WSGI entry point: uwsgi module = service, callable = app (see configs/uwsgi.ini)."""
+    method = environ.get('REQUEST_METHOD', 'GET').upper()
+    path = environ.get('PATH_INFO') or '/'
+    resp = route(method, path)
+    if method == 'HEAD':
+        resp = dict(resp, body=None)  # headers only; Content-Length stays
+    status_line = f"{resp['status']} {_STATUS_TEXT.get(resp['status'], 'OK')}"
+    start_response(status_line, resp['headers'])
+    if resp['body'] is None:
+        return [b'']
+    return [resp['body']]
+
+
 def main():
+    global syncer, interval
     ap = argparse.ArgumentParser(description='D1 vendor reset data service')
     ap.add_argument('--sync-only', action='store_true', help='sync once and exit')
+    ap.add_argument('--no-sync', action='store_true',
+                    help='do not start the periodic sync (serve the existing data/*.json)')
     ap.add_argument('--port', type=int, default=DEFAULT_PORT)
     ap.add_argument('--host', default='0.0.0.0')
     ap.add_argument('--interval', type=int, default=WEEK_SECONDS,
@@ -741,15 +817,14 @@ def main():
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
     syncer = Syncer()
+    interval = args.interval
     if args.sync_only:
         syncer.sync()
         log.info('done')
         return
 
-    Handler.syncer = syncer
-    Handler.interval = args.interval
-    t = threading.Thread(target=syncer.schedule, args=(args.interval,), daemon=True)
-    t.start()
+    if not args.no_sync:
+        start_sync()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     log.info('serving on http://%s:%d', args.host, args.port)
     log.info('front end:  http://%s:%d%s/%s', args.host, args.port, STATIC_PREFIX, INDEX_FILE)
